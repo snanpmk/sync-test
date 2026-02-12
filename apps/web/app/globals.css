@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-primary: #67d861;
+  --color-primary-foreground: #000000;
+  --color-secondary: #b6ecaf;
+  --color-brand-dark: #1a1a1a;
+}
+
+/* Fallback utilities to ensure brand colors appeal immediately if theme vars lag */
+@layer utilities {
+  .bg-primary {
+    background-color: #67d861 !important;
+  }
+  .text-primary {
+    color: #67d861 !important;
+  }
+  .border-primary {
+    border-color: #67d861 !important;
+  }
+  .bg-primary\/20 {
+    background-color: rgba(103, 216, 97, 0.2) !important;
+  }
+  .shadow-primary\/20 {
+    --tw-shadow-color: rgba(103, 216, 97, 0.2) !important;
+  }
+
+  .bg-secondary {
+    background-color: #b6ecaf !important;
+  }
+  .text-secondary {
+    color: #b6ecaf !important;
+  }
+
+  .bg-brand-dark {
+    background-color: #1a1a1a !important;
+  }
+}
+
+:root {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
