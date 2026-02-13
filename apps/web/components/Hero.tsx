@@ -81,9 +81,9 @@ export const Hero = () => {
           className="mt-16 sm:mt-24 relative mx-auto max-w-5xl rounded-2xl lg:rounded-3xl border border-white/10 bg-white/5 p-1 lg:p-2 overflow-hidden shadow-2xl"
         >
           <img
-            src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2000&auto=format&fit=crop"
+            src="/assets/marketing/hero/hero-image.png"
             alt="SynConnect Dashboard Preview"
-            className="rounded-xl lg:rounded-2xl w-full h-[300px] sm:h-[450px] lg:h-[600px] object-cover"
+            className="rounded-xl lg:rounded-2xl w-full h-auto object-contain"
           />
           <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black via-transparent to-transparent opacity-80 h-1/2" />
         </motion.div>
