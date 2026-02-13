@@ -2,39 +2,39 @@
 @plugin "tailwindcss-animate";
 
 @theme {
-  --color-primary: #67d861;
+  --color-primary: #beee02;
   --color-primary-foreground: #000000;
-  --color-secondary: #b6ecaf;
-  --color-brand-dark: #1a1a1a;
+  --color-secondary: #e1ff66;
+  --color-brand-dark: #0a0a0a;
 }
 
 /* Fallback utilities to ensure brand colors appeal immediately if theme vars lag */
 @layer utilities {
   .bg-primary {
-    background-color: #67d861 !important;
+    background-color: #beee02 !important;
   }
   .text-primary {
-    color: #67d861 !important;
+    color: #beee02 !important;
   }
   .border-primary {
-    border-color: #67d861 !important;
+    border-color: #beee02 !important;
   }
   .bg-primary\/20 {
-    background-color: rgba(103, 216, 97, 0.2) !important;
+    background-color: rgba(190, 238, 2, 0.2) !important;
   }
   .shadow-primary\/20 {
-    --tw-shadow-color: rgba(103, 216, 97, 0.2) !important;
+    --tw-shadow-color: rgba(190, 238, 2, 0.2) !important;
   }
 
   .bg-secondary {
-    background-color: #b6ecaf !important;
+    background-color: #e1ff66 !important;
   }
   .text-secondary {
-    color: #b6ecaf !important;
+    color: #e1ff66 !important;
   }
 
   .bg-brand-dark {
-    background-color: #1a1a1a !important;
+    background-color: #0a0a0a !important;
   }
 }
 
