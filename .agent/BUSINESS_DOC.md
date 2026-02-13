@@ -90,7 +90,7 @@
 
 | Role | Color Name | Hex Code | Usage |
 | :--- | :--- | :--- | :--- |
-| **Primary/Accent** | **Electric Green** | `#67D861` | CTAs, Highlights, Active States, Links |
+| **Primary/Accent** | **Electric Green** | `#beee02` | CTAs, Highlights, Active States, Links |
 | **Secondary** | **Pale Green** | `#B6ECAF` | Hover states, Subtle accents |
 | **Background** | **Dark Grey** | `#1A1A1A` | Main backgrounds, Cards, Dark surfaces |
 | **Text** | **White** | `#FFFFFF` | Primary text, Borders |

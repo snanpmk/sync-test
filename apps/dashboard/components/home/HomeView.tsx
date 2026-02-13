@@ -207,8 +207,8 @@ export function HomeView({ onNavigate }: HomeViewProps) {
                       x2="0"
                       y2="1"
                     >
-                      <stop offset="5%" stopColor="#67d861" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#67d861" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#beee02" stopOpacity={0.2} />
+                      <stop offset="95%" stopColor="#beee02" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid
@@ -266,13 +266,13 @@ export function HomeView({ onNavigate }: HomeViewProps) {
                   <Area
                     type="monotone"
                     dataKey="clicks"
-                    stroke="#67d861"
+                    stroke="#beee02"
                     strokeWidth={2}
                     fillOpacity={1}
                     fill="url(#colorClicks)"
                     activeDot={{
                       r: 4,
-                      fill: '#67d861',
+                      fill: '#beee02',
                       stroke: '#fff',
                       strokeWidth: 2,
                     }}

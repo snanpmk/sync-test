@@ -21,7 +21,7 @@ export const profileSchema = z.object({
     .optional(),
   theme: z
     .object({
-      primaryColor: z.string().default('#67D861'),
+      primaryColor: z.string().default('#beee02'),
       backgroundColor: z.string().default('#1A1A1A'),
     })
     .optional(),

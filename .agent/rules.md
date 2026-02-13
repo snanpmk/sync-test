@@ -198,7 +198,7 @@ See `.agent/workflows/development-workflow.md` for detailed steps.
 - **Animations**: Framer Motion for smooth transitions
 - **Styling**: Tailwind CSS + Shadcn/UI components
 - **Color Scheme**: **STRICTLY FOLLOW BRAND COLORS**
-  - **Primary (Accent)**: Electric Green `#67D861` (Use for CTAs, highlights, active states)
+  - **Primary (Accent)**: Electric Green `#beee02` (Use for CTAs, highlights, active states)
   - **Secondary**: Pale Green `#B6ECAF` (Use for hover states, secondary buttons)
   - **Background**: Dark Grey `#1A1A1A` (Use for main backgrounds, cards)
   - **Text/Surface**: White `#FFFFFF` (Use for text on dark backgrounds, light surfaces)
@@ -206,7 +206,7 @@ See `.agent/workflows/development-workflow.md` for detailed steps.
   **Tailwind Config:**
   ```js
   colors: {
-    primary: '#67D861',      // Electric Green
+    primary: '#beee02',      // Electric Green
     secondary: '#B6ECAF',    // Pale Green
     dark: '#1A1A1A',         // Dark Grey
     light: '#FFFFFF',        // White
@@ -214,7 +214,7 @@ See `.agent/workflows/development-workflow.md` for detailed steps.
   ```
   
   **Usage Guidelines:**
-  - ✅ Use Electric Green (#67D861) for all primary CTAs (Buy Now, Connect, Submit)
+  - ✅ Use Electric Green (#beee02) for all primary CTAs (Buy Now, Connect, Submit)
   - ✅ Use Dark Grey (#1A1A1A) for backgrounds and dark mode surfaces
   - ✅ Use Pale Green (#B6ECAF) for hover states and secondary actions
   - ✅ Use White (#FFFFFF) for text on dark backgrounds
