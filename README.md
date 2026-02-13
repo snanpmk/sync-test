@@ -3,7 +3,7 @@
 **Connect. Network. Dominate.**  
 A premium, high-impact NFC networking platform designed to bridge the physical and digital worlds. SynConnect v3 provides an ecosystem for high-frequency networking through smart NFC cards and automated Google Review stands.
 
-![SynConnect Banner](https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2000&auto=format&fit=crop)
+![SynConnect Banner](./apps/web/public/assets/marketing/hero/hero-image.png)
 
 ---
 
