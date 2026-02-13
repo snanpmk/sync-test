@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SynConnectLogo } from '@synconnect/ui';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -56,7 +56,17 @@ export const Navbar = () => {
           })}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Link
+            href="/cart"
+            className="relative p-2 text-white/70 hover:text-white transition-colors"
+          >
+            <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="absolute top-0.5 right-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4 bg-primary text-black text-[8px] sm:text-[10px] font-black rounded-full flex items-center justify-center">
+              1
+            </span>
+          </Link>
+
           <Link
             href="/shop"
             className="hidden sm:block rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-black transition-all hover:scale-105 active:scale-95"

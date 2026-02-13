@@ -152,15 +152,15 @@ export default function ProductDetailPage({
                   </span>
                 </motion.div>
 
-                <h1 className="text-4xl lg:text-7xl font-black mb-6 tracking-tight italic">
+                <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 tracking-tight italic">
                   {product.name}
                 </h1>
 
-                <p className="text-3xl font-bold text-primary mb-8">
+                <p className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">
                   {product.price}
                 </p>
 
-                <p className="text-xl text-white/60 leading-relaxed max-w-xl">
+                <p className="text-base sm:text-xl text-white/60 leading-relaxed max-w-xl">
                   {product.description}
                 </p>
               </div>
@@ -172,7 +172,7 @@ export default function ProductDetailPage({
                 variants={{
                   visible: { transition: { staggerChildren: 0.1 } },
                 }}
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
               >
                 {[
                   { label: 'Instant Connect', icon: Smartphone },
@@ -190,10 +190,10 @@ export default function ProductDetailPage({
                       scale: 1.02,
                       backgroundColor: 'rgba(255,255,255,0.08)',
                     }}
-                    className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors"
+                    className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors"
                   >
                     <item.icon className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-bold text-white/80">
+                    <span className="text-xs sm:text-sm font-bold text-white/80">
                       {item.label}
                     </span>
                   </motion.div>
@@ -205,16 +205,16 @@ export default function ProductDetailPage({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="p-8 rounded-3xl border border-white/5 bg-white/2"
+                className="p-6 sm:p-8 rounded-3xl border border-white/5 bg-white/2"
               >
-                <h3 className="text-lg font-bold mb-6 text-white uppercase tracking-widest border-b border-white/10 pb-4">
+                <h3 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-white uppercase tracking-widest border-b border-white/10 pb-4">
                   Standard Specs
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {product.specs.map((spec: any, i: number) => (
                     <div
                       key={i}
-                      className="flex justify-between items-center text-sm"
+                      className="flex justify-between items-center text-xs sm:text-sm"
                     >
                       <span className="text-white/40">{spec.label}</span>
                       <span className="text-white font-bold">{spec.value}</span>
@@ -224,23 +224,23 @@ export default function ProductDetailPage({
               </motion.div>
 
               {/* CTA Area */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-10 border-t border-white/10">
+              <div className="flex flex-col sm:flex-row gap-4 pt-8 sm:pt-10 border-t border-white/10">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1 group flex items-center justify-center gap-3 rounded-full bg-primary px-10 py-5 text-xl font-black text-black transition-all shadow-[0_0_20px_rgba(190,238,2,0.2)]"
+                  className="w-full sm:flex-1 group flex items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-black text-black transition-all shadow-[0_0_20px_rgba(190,238,2,0.2)]"
                 >
-                  <ShoppingCart className="w-6 h-6" />
+                  <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
                   Add to Cart
                 </motion.button>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1"
+                  className="w-full sm:flex-1"
                 >
                   <Link
-                    href="/cart"
-                    className="flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-10 py-5 text-xl font-black text-white hover:bg-white/10 transition-all w-full h-full"
+                    href="/checkout"
+                    className="flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-black text-white hover:bg-white/10 transition-all w-full h-full"
                   >
                     Buy Now
                   </Link>
@@ -248,7 +248,7 @@ export default function ProductDetailPage({
               </div>
 
               {/* Shipping Note */}
-              <p className="text-center text-xs text-white/40 font-medium whitespace-nowrap">
+              <p className="text-center text-[10px] sm:text-xs text-white/40 font-medium sm:whitespace-nowrap">
                 Free express shipping on all orders over ₹1,999. • Ships within
                 24 hours.
               </p>
