@@ -186,7 +186,10 @@ export default function ProductDetailPage({
                       hidden: { opacity: 0, y: 10 },
                       visible: { opacity: 1, y: 0 },
                     }}
-                    whileHover={{ scale: 1.02, bg: 'rgba(255,255,255,0.08)' }}
+                    whileHover={{
+                      scale: 1.02,
+                      backgroundColor: 'rgba(255,255,255,0.08)',
+                    }}
                     className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors"
                   >
                     <item.icon className="w-5 h-5 text-primary" />

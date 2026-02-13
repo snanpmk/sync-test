@@ -274,7 +274,7 @@ const CardOnboarding = ({
           <div className="space-y-6">
             <motion.div
               whileHover={{
-                bg: 'rgba(255,255,255,0.05)',
+                backgroundColor: 'rgba(255,255,255,0.05)',
                 borderColor: 'rgba(190,238,2,0.3)',
               }}
               className="rounded-[2.5rem] border-2 border-dashed border-white/10 p-10 lg:p-16 text-center transition-all cursor-pointer group shadow-xl"
