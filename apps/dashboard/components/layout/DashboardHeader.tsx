@@ -18,7 +18,7 @@ export function DashboardHeader() {
         />
         <div>
           <h1 className="text-2xl md:text-3xl font-black text-neutral-900 tracking-tight">
-            Good Morning, Alex 👋
+            Good Morning, Alex
           </h1>
           <p className="text-neutral-500 text-xs md:text-sm mt-0.5 font-bold uppercase tracking-widest opacity-60">
             Performance Overview
