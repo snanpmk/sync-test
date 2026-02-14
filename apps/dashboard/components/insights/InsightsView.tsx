@@ -6,11 +6,19 @@ import { PrimaryStats } from './PrimaryStats';
 import { PerformanceOverview } from './PerformanceOverview';
 import { TrafficAnalysis } from './TrafficAnalysis';
 import { AudienceAnalysis } from './AudienceAnalysis';
+import { Share2, Check } from 'lucide-react';
 
 export function InsightsView() {
+  const [copied, setCopied] = useState(false);
   const [activePeriod, setActivePeriod] = useState<
     'daily' | 'weekly' | 'monthly' | 'six_months'
   >('weekly');
+
+  const handleShare = () => {
+    navigator.clipboard.writeText('sync-test.com/alex-profile');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="p-4 lg:p-10 space-y-8 max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
@@ -30,8 +38,21 @@ export function InsightsView() {
             You've reached <span className="font-bold">2,500 new people</span> this week. Keep sharing!
           </p>
         </div>
-        <button className="px-10 py-4 bg-[#222222] text-white font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl text-[10px] tracking-[0.2em] uppercase">
-          EXPORT FULL REPORT
+        <button
+          onClick={handleShare}
+          className="px-10 py-4 bg-[#222222] text-white font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl text-[10px] tracking-[0.2em] uppercase flex items-center gap-2 group"
+        >
+          {copied ? (
+            <>
+              <Check size={14} className="text-[#beee02]" />
+              LINK COPIED!
+            </>
+          ) : (
+            <>
+              <Share2 size={14} className="text-[#beee02] group-hover:rotate-12 transition-transform" />
+              SHARE YOUR PROFILE
+            </>
+          )}
         </button>
       </div>
 

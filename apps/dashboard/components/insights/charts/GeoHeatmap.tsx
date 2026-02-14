@@ -17,7 +17,7 @@ export function GeoHeatmap() {
       <div className="space-y-4">
         {geoData.map((item, index) => (
           <div key={item.country} className="space-y-1">
-            <div className="flex justify-between text-sm font-medium text-neutral-700">
+            <div className="flex justify-between text-sm font-medium text-neutral-300">
               <span className="flex items-center gap-2">
                 {/* Simple flag placeholder or emoji if consistent */}
                 <span className="text-lg leading-none select-none">

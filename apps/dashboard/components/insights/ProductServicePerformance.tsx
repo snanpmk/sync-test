@@ -27,17 +27,17 @@ export function ProductServicePerformance() {
   return (
     <div className="space-y-6">
       {/* Tab Switcher */}
-      <div className="flex p-1 bg-neutral-100 rounded-2xl w-full">
+      <div className="flex p-1 bg-neutral-100 rounded-full w-full">
         <button
           onClick={() => setActiveTab('products')}
-          className={`flex-1 py-3 text-sm font-black transition-all rounded-xl uppercase tracking-widest ${activeTab === 'products' ? 'bg-[#222222] text-[#beee02]' : 'text-neutral-500'
+          className={`flex-1 py-3 text-sm font-black transition-all rounded-full uppercase tracking-widest ${activeTab === 'products' ? 'bg-[#222222] text-[#beee02]' : 'text-neutral-500'
             }`}
         >
           Products
         </button>
         <button
           onClick={() => setActiveTab('services')}
-          className={`flex-1 py-3 text-sm font-black transition-all rounded-xl uppercase tracking-widest ${activeTab === 'services' ? 'bg-[#222222] text-[#beee02]' : 'text-neutral-500'
+          className={`flex-1 py-3 text-sm font-black transition-all rounded-full uppercase tracking-widest ${activeTab === 'services' ? 'bg-[#222222] text-[#beee02]' : 'text-neutral-500'
             }`}
         >
           Services

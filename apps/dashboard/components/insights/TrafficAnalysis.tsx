@@ -21,18 +21,7 @@ export function TrafficAnalysis() {
                 <ProductServicePerformance />
             </div>
 
-            {/* Top PERFORMING LINKS */}
-            <div className="bg-white p-6 lg:p-8 rounded-[32px] border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-                <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-neutral-900 flex items-center gap-3">
-                        <span className="p-2.5 bg-neutral-900 text-white rounded-2xl">
-                            <TrendingUp size={20} />
-                        </span>
-                        External Link Performance
-                    </h2>
-                </div>
-                <TopPerformingLinks />
-            </div>
+          
 
             {/* Social Traffic */}
             <div className="bg-[#222222] p-6 lg:p-8 rounded-[32px] border border-white/5 shadow-2xl">
