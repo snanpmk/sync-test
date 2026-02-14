@@ -1,7 +1,7 @@
 import { ArrowUpRight, ChevronRight } from 'lucide-react';
 import { CountUp } from '../ui/CountUp';
 
-interface MetricCardProps {
+export interface MetricCardProps {
   icon: React.ReactNode;
   label: string;
   value: string;
@@ -66,8 +66,10 @@ export function MetricCard({
   colorTheme = 'blue',
 }: MetricCardProps) {
   // Parse numeric value for animation if possible
-  const numericValue = parseInt(value.replace(/,/g, ''), 10);
+  const numericValue = parseFloat(value.replace(/[^0-9.-]/g, ''));
   const isNumeric = !isNaN(numericValue);
+  const suffix = value.includes('%') ? '%' : '';
+  const decimals = value.includes('.') ? value.split('.')[1].replace(/[^0-9]/g, '').length : 0;
 
   const theme = THEME_STYLES[colorTheme];
 
@@ -104,7 +106,7 @@ export function MetricCard({
           {isGrowth ? (
             trend
           ) : isNumeric ? (
-            <CountUp end={numericValue} />
+            <CountUp end={numericValue} suffix={suffix} decimals={decimals} />
           ) : (
             value
           )}

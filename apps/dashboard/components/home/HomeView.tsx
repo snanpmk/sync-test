@@ -21,11 +21,12 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { MetricCard } from './MetricCard';
 import { SuggestionBadge } from './SuggestionBadge';
 import { SmartSuggestion } from './SmartSuggestion';
 import { ActivityItem } from './ActivityItem';
 import { QuickActionBtn } from './QuickActionBtn';
+import { HomeInsightsCarousel } from './HomeInsightsCarousel';
+import { MetricCard, MetricCardProps } from './MetricCard';
 import {
   PERFORMANCE_DATA,
   MOCK_SUGGESTIONS,
@@ -47,6 +48,38 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       alert('Profile link copied to clipboard!');
     }
   };
+
+
+
+  const metrics: MetricCardProps[] = [
+    {
+      icon: <Eye size={18} strokeWidth={2.5} />,
+      label: 'Profile Views',
+      value: '1,245',
+      trend: '+12%',
+      link: 'View Insights',
+      colorTheme: 'blue',
+      onAction: () => onNavigate?.('insights'),
+    },
+    {
+      icon: <LinkIcon size={18} strokeWidth={2.5} />,
+      label: 'Total Clicks',
+      value: '842',
+      trend: '+5%',
+      link: 'View Insights',
+      colorTheme: 'indigo',
+      onAction: () => onNavigate?.('insights'),
+    },
+    {
+      icon: <TrendingUp size={18} strokeWidth={2.5} />,
+      label: 'Click Rate',
+      value: '67.6%',
+      trend: '+2.4%',
+      link: 'View Details',
+      colorTheme: 'emerald',
+      onAction: () => onNavigate?.('insights'),
+    },
+  ];
 
   const QuickActions = () => (
     <section className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -87,44 +120,19 @@ export function HomeView({ onNavigate }: HomeViewProps) {
   return (
     <div className="p-4 md:p-8 pt-0 md:pt-0 mx-auto space-y-6 md:space-y-8 relative">
       {/* 1. Performance Snapshot (High-Level Only) */}
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        <MetricCard
-          icon={<Eye size={18} strokeWidth={2.5} />}
-          label="Profile Views"
-          value="1,245"
-          trend="+12%"
-          link="View Insights"
-          colorTheme="blue"
-          onAction={() => onNavigate?.('insights')}
-        />
-        <MetricCard
-          icon={<LinkIcon size={18} strokeWidth={2.5} />}
-          label="Total Clicks"
-          value="842"
-          trend="+5%"
-          link="View Insights"
-          colorTheme="indigo"
-          onAction={() => onNavigate?.('insights')}
-        />
-        <MetricCard
-          icon={<Star size={18} strokeWidth={2.5} />}
-          label="Review Clicks"
-          value="128"
-          trend="+8%"
-          link="View Insights"
-          colorTheme="purple"
-          onAction={() => onNavigate?.('insights')}
-        />
-        <MetricCard
-          icon={<TrendingUp size={18} strokeWidth={2.5} />}
-          label="Growth"
-          value="18%"
-          trend="vs last week"
-          link="View Activity"
-          isGrowth
-          colorTheme="emerald"
-          onAction={() => onNavigate?.('insights')}
-        />
+      {/* 1. Performance Snapshot (High-Level Only) */}
+      <section>
+        {/* Mobile Carousel */}
+        <div className="block md:hidden">
+          <HomeInsightsCarousel metrics={metrics} />
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          {metrics.map((metric, i) => (
+            <MetricCard key={i} {...metric} />
+          ))}
+        </div>
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

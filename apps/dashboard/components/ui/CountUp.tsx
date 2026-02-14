@@ -13,8 +13,9 @@ export function CountUp({
   end,
   duration = 2000,
   suffix = '',
+  decimals = 0,
   className = '',
-}: CountUpProps) {
+}: CountUpProps & { decimals?: number }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export function CountUp({
       // Easing function for smooth effect (easeOutExpo)
       const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
 
-      setCount(Math.floor(easeProgress * end));
+      setCount(easeProgress * end);
 
       if (progress < 1) {
         requestAnimationFrame(animate);
@@ -38,7 +39,10 @@ export function CountUp({
 
   return (
     <span className={className}>
-      {count.toLocaleString()}
+      {count.toLocaleString(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      })}
       {suffix}
     </span>
   );
