@@ -70,7 +70,7 @@ export function TopPerformingLinks() {
                 Clicks
               </p>
             </div>
-            <div className="hidden sm:flex items-center gap-1 px-2 py-1 bg-primary/10 text-[#88AA00] rounded-lg text-xs font-bold border border-primary/20">
+            <div className="hidden sm:flex items-center gap-1 px-2 py-1 bg-[#beee02]/10 text-[#88AA00] rounded-lg text-xs font-bold border border-[#beee02]/20">
               <TrendingUp size={10} />
               {link.growth}
             </div>

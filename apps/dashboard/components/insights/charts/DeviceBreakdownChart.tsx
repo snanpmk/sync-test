@@ -10,9 +10,9 @@ import {
 } from 'recharts';
 
 const data = [
-  { name: 'Mobile', value: 75, color: '#3b82f6' },
-  { name: 'Desktop', value: 20, color: '#10b981' },
-  { name: 'Tablet', value: 5, color: '#f59e0b' },
+  { name: 'Mobile', value: 75, color: '#beee02' },
+  { name: 'Desktop', value: 20, color: '#222222' },
+  { name: 'Tablet', value: 5, color: '#4c4c4c' },
 ];
 
 export function DeviceBreakdownChart() {

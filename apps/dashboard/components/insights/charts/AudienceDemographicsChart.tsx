@@ -8,13 +8,14 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Area, // Added Area import
+  Cell,
 } from 'recharts';
 
 const data = [
-  { name: 'Mobile', value: 75, color: '#beee02' },
-  { name: 'Desktop', value: 20, color: '#222222' },
-  { name: 'Tablet', value: 5, color: '#4c4c4c' },
+  { name: '18-24', value: 35, color: '#beee02' },
+  { name: '25-34', value: 45, color: '#222222' },
+  { name: '35-44', value: 15, color: '#4c4c4c' },
+  { name: '45+', value: 5, color: '#EAE8E7' },
 ];
 
 export function AudienceDemographicsChart() {
@@ -31,7 +32,7 @@ export function AudienceDemographicsChart() {
             stroke="#f1f5f9"
           />
           <XAxis
-            dataKey="age"
+            dataKey="name"
             axisLine={false}
             tickLine={false}
             tick={{ fill: '#94a3b8', fontSize: 11 }}
@@ -44,31 +45,22 @@ export function AudienceDemographicsChart() {
           <Tooltip
             cursor={{ fill: '#f8fafc' }}
             contentStyle={{
-              backgroundColor: '#1e293b',
-              borderRadius: '8px',
+              backgroundColor: '#222222',
+              borderRadius: '12px',
               border: 'none',
               color: '#fff',
               fontSize: '11px',
             }}
           />
-          <Area
-            type="monotone"
-            dataKey="views"
-            stroke="#222222"
-            strokeWidth={2}
-            fillOpacity={1}
-            fill="url(#colorViews)"
-            name="Profile Views"
-          />
-          <Area
-            type="monotone"
-            dataKey="clicks"
-            stroke="#beee02"
-            strokeWidth={2}
-            fillOpacity={1}
-            fill="url(#colorClicks)"
-            name="Total Clicks"
-          />
+          <Bar
+            dataKey="value"
+            radius={[4, 4, 0, 0]}
+            barSize={40}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -37,36 +37,46 @@ const heatmapData: [number, number, number][] = [
 
 export default function MapHeatmap() {
   return (
-    <div className="w-full h-full rounded-[32px] overflow-hidden border border-neutral-100 shadow-inner group relative">
+    <div className="w-full h-full rounded-[32px] overflow-hidden border border-white/5 shadow-2xl group relative bg-[#222222]">
       <style jsx global>{`
         .leaflet-control-attribution {
           display: none !important;
         }
-        .grayscale-map {
-          filter: grayscale(100%) invert(0%) contrast(90%);
+        .custom-map-filter .leaflet-tile-pane {
+           filter: invert(100%) hue-rotate(180deg) brightness(0.6) contrast(1.2);
+        }
+        .leaflet-container {
+            background-color: #222222 !important;
         }
       `}</style>
       <MapContainer
-        center={[10.5, 76.5]}
-        zoom={7}
+        center={[15, 45]}
+        zoom={3}
         scrollWheelZoom={false}
-        style={{ height: '100%', width: '100%', background: '#F8FAFC' }}
-        className="grayscale-map"
+        style={{ height: '100%', width: '100%', background: '#222222' }}
+        className="custom-map-filter"
       >
-        <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        />
         <HeatmapLayer
           points={heatmapData}
           longitudeExtractor={(m: any) => m[1]}
           latitudeExtractor={(m: any) => m[0]}
           intensityExtractor={(m: any) => m[2]}
-          radius={30}
-          blur={20}
+          radius={25}
+          blur={15}
           max={1.0}
+          gradient={{
+            0.4: '#4c4c4c',
+            0.6: '#9fcc00',
+            1.0: '#beee02'
+          }}
         />
       </MapContainer>
 
-      {/* Premium Overlay for map feel */}
-      <div className="absolute inset-0 pointer-events-none border-12 border-white/10 rounded-[32px] z-20" />
+      {/* Premium Overlay */}
+      <div className="absolute inset-0 pointer-events-none border-[12px] border-black/10 rounded-[32px] z-20" />
     </div>
   );
 }

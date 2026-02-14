@@ -9,10 +9,10 @@ export function PrimaryStats() {
             <MetricCard
                 icon={<Users size={20} />}
                 label="Profile Views"
-                value="12,234"
+                value="1,245"
                 trend="+12%"
                 link="Audience Data"
-                colorTheme="blue"
+                variant="dark"
             />
             <MetricCard
                 icon={<MousePointer2 size={20} />}
@@ -20,23 +20,23 @@ export function PrimaryStats() {
                 value="8,540"
                 trend="+25%"
                 link="Click Map"
-                colorTheme="emerald"
+                variant="dark"
             />
             <MetricCard
                 icon={<Smartphone size={20} />}
-                label="NFC/QR Scans"
-                value="945"
-                trend="+15%"
-                link="Hardware Stats"
-                colorTheme="orange"
+                label="Connections"
+                value="1,245"
+                trend="+22%"
+                link="Manage Network"
+                variant="dark"
             />
             <MetricCard
                 icon={<TrendingUp size={20} />}
-                label="Conversion Rate"
-                value="4.8%"
-                trend="+2.1%"
-                link="Funnel Analysis"
-                colorTheme="purple"
+                label="Phone Links"
+                value="1,245"
+                trend="+22%"
+                link="Share History"
+                variant="dark"
             />
         </div>
     );

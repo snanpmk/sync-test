@@ -5,6 +5,7 @@ import { MapPin } from 'lucide-react';
 import { AIInsights } from './AIInsights';
 import { GeoHeatmap } from './charts/GeoHeatmap';
 import { DeviceBreakdownChart } from './charts/DeviceBreakdownChart';
+import { AudienceDemographicsChart } from './charts/AudienceDemographicsChart';
 
 const MapHeatmap = dynamic(() => import('./charts/MapHeatmap'), {
     ssr: false,
@@ -26,19 +27,19 @@ export function AudienceAnalysis() {
             </div>
 
             {/* Locations & Devices Combined or Separate */}
-            <div className="bg-white p-6 lg:p-8 rounded-[32px] border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-                <h2 className="text-xl font-bold text-neutral-900 mb-6 flex items-center gap-3">
-                    <span className="p-2.5 bg-orange-50 text-orange-500 rounded-2xl">
+            <div className="bg-[#222222] p-6 lg:p-8 rounded-[32px] border border-white/5 shadow-2xl">
+                <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                    <span className="p-2.5 bg-[#beee02] text-black rounded-2xl">
                         <MapPin size={22} />
                     </span>
                     Audience Geolocation
                 </h2>
 
-                <div className="h-[400px] mb-8 rounded-[24px] overflow-hidden">
+                <div className="h-[400px] mb-8 rounded-[24px] overflow-hidden border border-white/5">
                     <MapHeatmap />
                 </div>
 
-                <h3 className="text-sm font-black uppercase text-neutral-400 mb-4 tracking-widest">
+                <h3 className="text-sm font-black uppercase text-neutral-500 mb-4 tracking-widest leading-none">
                     Global Distribution
                 </h3>
                 <GeoHeatmap />
@@ -54,6 +55,17 @@ export function AudienceAnalysis() {
                     </div>
                     <div className="h-[220px]">
                         <DeviceBreakdownChart />
+                    </div>
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-neutral-100">
+                    <div className="flex items-center justify-between mb-6">
+                        <h2 className="text-lg font-bold text-neutral-900">
+                            Age Demographics
+                        </h2>
+                    </div>
+                    <div className="h-[220px]">
+                        <AudienceDemographicsChart />
                     </div>
                 </div>
             </div>

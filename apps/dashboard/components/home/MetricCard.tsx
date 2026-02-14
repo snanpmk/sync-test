@@ -10,6 +10,7 @@ export interface MetricCardProps {
   isGrowth?: boolean;
   onAction?: () => void;
   colorTheme?: 'blue' | 'indigo' | 'purple' | 'emerald' | 'orange';
+  variant?: 'light' | 'dark';
 }
 
 const THEME_STYLES = {
@@ -64,6 +65,7 @@ export function MetricCard({
   isGrowth,
   onAction,
   colorTheme = 'blue',
+  variant = 'light',
 }: MetricCardProps) {
   // Parse numeric value for animation if possible
   const numericValue = parseFloat(value.replace(/[^0-9.-]/g, ''));
@@ -72,6 +74,38 @@ export function MetricCard({
   const decimals = value.includes('.') ? value.split('.')[1].replace(/[^0-9]/g, '').length : 0;
 
   const theme = THEME_STYLES[colorTheme];
+
+  if (variant === 'dark') {
+    return (
+      <div className="bg-[#222222] rounded-[24px] p-6 flex flex-col justify-between shadow-xl border border-white/5 transition-all duration-300 group cursor-pointer h-full">
+        <div className="flex justify-between items-start mb-2">
+          <p className="text-neutral-400 text-xs font-medium uppercase tracking-wider">{label}</p>
+          <div className="flex items-center gap-1 text-[#beee02] text-xs font-bold">
+            <ArrowUpRight size={14} strokeWidth={3} /> {trend}
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <h3 className="text-4xl font-extrabold text-white tracking-tight">
+            {isNumeric ? (
+              <CountUp end={numericValue} suffix={suffix} decimals={decimals} />
+            ) : (
+              value
+            )}
+          </h3>
+        </div>
+
+        <div className="mt-auto border-t border-white/10 pt-4">
+          <button
+            onClick={onAction}
+            className="text-[13px] font-bold text-[#beee02] flex items-center gap-1.5 transition-all hover:gap-2 uppercase tracking-wide"
+          >
+            {link}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-3xl p-5 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-neutral-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer h-full relative overflow-hidden">

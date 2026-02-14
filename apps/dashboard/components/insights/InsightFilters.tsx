@@ -21,7 +21,7 @@ export function InsightFilters({
   onChange,
 }: InsightFiltersProps) {
   return (
-    <div className="flex items-center gap-1 p-1 bg-white border border-neutral-200 rounded-xl shadow-sm w-fit mx-auto sm:mx-0">
+    <div className="flex items-center gap-1 p-1 bg-[#222222] rounded-full w-full sm:w-fit">
       {periods.map((period) => {
         const isActive = activePeriod === period.value;
         return (
@@ -29,14 +29,14 @@ export function InsightFilters({
             key={period.value}
             onClick={() => onChange(period.value)}
             className={`
-              relative px-4 py-2 text-sm font-medium rounded-lg transition-colors z-10
-              ${isActive ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 hover:bg-neutral-50'}
+              relative flex-1 sm:flex-none px-6 py-2.5 text-[11px] font-black uppercase tracking-widest rounded-full transition-all duration-300 z-10
+              ${isActive ? 'text-black' : 'text-neutral-500 hover:text-neutral-300'}
             `}
           >
             {isActive && (
               <motion.div
                 layoutId="insightFilterBg"
-                className="absolute inset-0 bg-primary rounded-lg -z-10"
+                className="absolute inset-0 bg-[#beee02] rounded-full -z-10"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}

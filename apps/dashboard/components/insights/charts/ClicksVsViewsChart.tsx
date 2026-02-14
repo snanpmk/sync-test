@@ -30,12 +30,12 @@ export function ClicksVsViewsChart({ period = 'weekly' }: { period?: string }) {
         <AreaChart data={data}>
           <defs>
             <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#1e293b" stopOpacity={0.1} />
-              <stop offset="95%" stopColor="#1e293b" stopOpacity={0} />
+              <stop offset="5%" stopColor="#222222" stopOpacity={0.1} />
+              <stop offset="95%" stopColor="#222222" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorClicks" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#CCFF00" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#CCFF00" stopOpacity={0} />
+              <stop offset="5%" stopColor="#beee02" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#beee02" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid
@@ -58,8 +58,8 @@ export function ClicksVsViewsChart({ period = 'weekly' }: { period?: string }) {
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: '#1e293b',
-              borderRadius: '8px',
+              backgroundColor: '#222222',
+              borderRadius: '12px',
               border: 'none',
               color: '#fff',
               fontSize: '12px',
@@ -71,7 +71,7 @@ export function ClicksVsViewsChart({ period = 'weekly' }: { period?: string }) {
           <Area
             type="monotone"
             dataKey="views"
-            stroke="#1e293b"
+            stroke="#222222"
             strokeWidth={2}
             fillOpacity={1}
             fill="url(#colorViews)"
@@ -80,7 +80,7 @@ export function ClicksVsViewsChart({ period = 'weekly' }: { period?: string }) {
           <Area
             type="monotone"
             dataKey="clicks"
-            stroke="#9fcc00" // using a greener shade for visibility if #CCFF00 is too light
+            stroke="#beee02"
             strokeWidth={2}
             fillOpacity={1}
             fill="url(#colorClicks)"
