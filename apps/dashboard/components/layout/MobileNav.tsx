@@ -13,33 +13,33 @@ export function MobileNav() {
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 lg:hidden">
       <nav className="bg-[#222222] rounded-full p-2 shadow-2xl flex items-center gap-2 border border-white/5">
         <MobileNavItem
-          icon={<Home size={24} />}
+          icon={<Home size={24} className='' />}
           label="Home"
           isActive={isActive('/home')}
           href="/home"
-          rounded="rounded-2xl"
+          shape="pill"
         />
         <MobileNavItem
           icon={<BarChart3 size={24} />}
           label="Insights"
           isActive={isActive('/insights')}
           href="/insights"
-          rounded="rounded-2xl"
+          shape="pill"
         />
         <MobileNavItem
           icon={<Users size={24} />}
           label="Network"
           isActive={isActive('/connections')}
           href="/connections"
-          rounded="rounded-2xl"
+          shape="pill"
         />
         <MobileNavItem
           icon={<UserCircle size={24} />}
           label="Profile"
           isActive={isActive('/account')}
           href="/account"
-          rounded="rounded-full"
-          isProfile={true}
+          shape="circle"
+          inactiveColor="white"
         />
       </nav>
     </div>
@@ -51,30 +51,30 @@ function MobileNavItem({
   label,
   isActive,
   href,
-  rounded = 'rounded-full',
-  isProfile = false,
+  shape = 'circle',
+  inactiveColor = 'dark',
 }: {
   icon: React.ReactNode;
   label: string;
   isActive: boolean;
   href: string;
-  rounded?: string;
-  isProfile?: boolean;
+  shape?: 'circle' | 'pill';
+  inactiveColor?: 'white' | 'dark';
 }) {
-  // Profile button has a special "White" state when inactive, based on the reference image
-  // But strict palette request says "use colors in the palette".
-  // Palette White is #FFFFFF or #F9F8F6 (Neutral-50).
-  // Let's use #F9F8F6 (Neutral-50) for the Profile inactive state to match "Picture" look but stay in palette.
-  // Active state remains Lime.
+  // Profile button has a special "White" state when inactive
+  const inactiveClass = inactiveColor === 'white'
+    ? 'bg-white text-black hover:bg-neutral-100' // White theme
+    : 'bg-[#4c4c4c] text-neutral-300 hover:bg-neutral-600 hover:text-white'; // Dark theme
 
-  const inactiveClass = isProfile
-    ? 'bg-white text-black hover:bg-neutral-100'
-    : 'bg-[#4c4c4c] text-neutral-300 hover:bg-neutral-600 hover:text-white';
+  // Dimensions & Rounding based on shape prop
+  const shapeClasses = shape === 'circle'
+    ? 'w-14 h-14 rounded-full'
+    : 'h-14 px-6 rounded-full';
 
   return (
     <Link
       href={href}
-      className={`relative w-14 h-14 flex items-center justify-center transition-all duration-300 ${rounded} ${isActive
+      className={`relative flex items-center justify-center transition-all duration-300 ${shapeClasses} ${isActive
         ? 'bg-[#beee02] text-black shadow-[0_0_15px_rgba(190,238,2,0.4)] scale-110 z-10'
         : inactiveClass
         }`}
