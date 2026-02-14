@@ -6,6 +6,7 @@ import { PrimaryStats } from './PrimaryStats';
 import { PerformanceOverview } from './PerformanceOverview';
 import { TrafficAnalysis } from './TrafficAnalysis';
 import { AudienceAnalysis } from './AudienceAnalysis';
+import { InsightFilters } from './InsightFilters';
 import { Share2, Check } from 'lucide-react';
 
 export function InsightsView() {
@@ -21,12 +22,17 @@ export function InsightsView() {
   };
 
   return (
-    <div className="p-4 lg:p-10 space-y-8 max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
-      {/* Header Context & Filters */}
-      <InsightsHeader
-        activePeriod={activePeriod}
-        onPeriodChange={setActivePeriod}
-      />
+    <div className="p-4 lg:p-10 space-y-8 max-w-[1600px] mx-auto">
+      {/* Header Context */}
+      <InsightsHeader />
+
+      {/* Sticky Filters Tab - Pinned ALWAYS across all screen sizes */}
+      <div className="sticky top-0 z-50 bg-neutral-50 -mx-4 px-4 py-2 sm:mx-0 sm:px-0 sm:top-2 md:top-0 !mt-2">
+        <InsightFilters
+          activePeriod={activePeriod}
+          onChange={setActivePeriod}
+        />
+      </div>
 
       {/* Trending Banner (Top-most highlight) */}
       <div className="bg-[#beee02] p-8 rounded-[32px] flex flex-col items-center text-center gap-6 shadow-[0_20px_50px_rgba(190,238,2,0.1)]">

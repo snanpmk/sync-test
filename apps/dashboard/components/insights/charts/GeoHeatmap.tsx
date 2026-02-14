@@ -3,24 +3,23 @@
 import { motion } from 'framer-motion';
 
 const geoData = [
-  { country: 'United States', code: 'US', value: 45, color: '#ef4444' }, // Intense
-  { country: 'United Kingdom', code: 'GB', value: 25, color: '#f97316' },
-  { country: 'India', code: 'IN', value: 15, color: '#eab308' },
-  { country: 'Germany', code: 'DE', value: 8, color: '#84cc16' },
-  { country: 'Canada', code: 'CA', value: 5, color: '#10b981' },
-  { country: 'Others', code: 'OT', value: 2, color: '#64748b' },
+  { country: 'United States', code: 'US', value: 45, color: '#222222' }, // Dark/Intense
+  { country: 'United Kingdom', code: 'GB', value: 25, color: '#444444' },
+  { country: 'India', code: 'IN', value: 15, color: '#666666' },
+  { country: 'Germany', code: 'DE', value: 8, color: '#888888' },
+  { country: 'Canada', code: 'CA', value: 5, color: '#beee02' }, // Neon Lime accent for brand
+  { country: 'Others', code: 'OT', value: 2, color: '#cccccc' },
 ];
 
 export function GeoHeatmap() {
   return (
-    <div className="w-full h-full min-h-[300px] flex flex-col justify-center">
-      <div className="space-y-4">
+    <div className="w-full h-full flex flex-col justify-center font-sans">
+      <div className="space-y-6">
         {geoData.map((item, index) => (
-          <div key={item.country} className="space-y-1">
-            <div className="flex justify-between text-sm font-medium text-neutral-300">
-              <span className="flex items-center gap-2">
-                {/* Simple flag placeholder or emoji if consistent */}
-                <span className="text-lg leading-none select-none">
+          <div key={item.country} className="space-y-2">
+            <div className="flex justify-between items-end">
+              <span className="flex items-center gap-3">
+                <span className="text-xl leading-none filter drop-shadow-sm">
                   {item.code === 'US' && '🇺🇸'}
                   {item.code === 'GB' && '🇬🇧'}
                   {item.code === 'IN' && '🇮🇳'}
@@ -28,24 +27,31 @@ export function GeoHeatmap() {
                   {item.code === 'CA' && '🇨🇦'}
                   {item.code === 'OT' && '🌍'}
                 </span>
-                {item.country}
+              
               </span>
-              <span>{item.value}%</span>
+              <span className="text-[12px] font-black text-neutral-900 leading-none">{item.value}%</span>
             </div>
-            <div className="h-2 w-full bg-neutral-100 rounded-full overflow-hidden">
+
+            <div className="h-3 w-full bg-neutral-100 rounded-full overflow-hidden shadow-inner border border-neutral-50/50">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${item.value}%` }}
-                transition={{ duration: 1, delay: index * 0.1 }}
-                className="h-full rounded-full"
+                transition={{ duration: 1.2, delay: index * 0.1, ease: "circOut" }}
+                className="h-full rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.1)]"
                 style={{ backgroundColor: item.color }}
               />
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-6 text-xs text-neutral-400 text-center">
-        * Based on IP Geolocation from last 30 days
+
+      <div className="mt-8 pt-6 border-t border-neutral-100">
+        <div className="flex items-center justify-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#beee02] animate-pulse" />
+          <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em]">
+            Live Real-time Distribution
+          </p>
+        </div>
       </div>
     </div>
   );

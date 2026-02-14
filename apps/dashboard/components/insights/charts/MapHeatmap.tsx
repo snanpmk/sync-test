@@ -48,6 +48,7 @@ export default function MapHeatmap() {
         }
         .leaflet-container {
             background-color: #F8FAFC !important;
+            z-index: 0 !important;
         }
       `}</style>
             <MapContainer
