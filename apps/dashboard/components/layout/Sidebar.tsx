@@ -1,12 +1,14 @@
+'use client';
+
 import { SynConnectLogo } from '@synconnect/ui';
 import { Home, BarChart3, Users, UserCircle } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-interface SidebarProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-}
+export function Sidebar() {
+  const pathname = usePathname();
+  const isActive = (path: string) => pathname?.startsWith(path);
 
-export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   return (
     <aside className="hidden lg:flex w-72 border-r border-white/5 bg-[#0a0a0a] flex-col h-full">
       <div className="p-8">
@@ -17,26 +19,26 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
         <NavItem
           icon={<Home size={20} />}
           label="Home"
-          isActive={activeTab === 'home'}
-          onClick={() => setActiveTab('home')}
+          isActive={isActive('/home')}
+          href="/home"
         />
         <NavItem
           icon={<BarChart3 size={20} />}
           label="Insights"
-          isActive={activeTab === 'insights'}
-          onClick={() => setActiveTab('insights')}
+          isActive={isActive('/insights')}
+          href="/insights"
         />
         <NavItem
           icon={<Users size={20} />}
           label="Connections"
-          isActive={activeTab === 'connections'}
-          onClick={() => setActiveTab('connections')}
+          isActive={isActive('/connections')}
+          href="/connections"
         />
         <NavItem
           icon={<UserCircle size={20} />}
           label="Account"
-          isActive={activeTab === 'account'}
-          onClick={() => setActiveTab('account')}
+          isActive={isActive('/account')}
+          href="/account"
         />
       </nav>
 
@@ -59,21 +61,20 @@ function NavItem({
   icon,
   label,
   isActive,
-  onClick,
+  href,
 }: {
   icon: React.ReactNode;
   label: string;
   isActive: boolean;
-  onClick: () => void;
+  href: string;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={`w-full flex items-center gap-3 px-5 py-3.5 rounded-[20px] transition-all duration-300 group ${
-        isActive
+    <Link
+      href={href}
+      className={`w-full flex items-center gap-3 px-5 py-3.5 rounded-[20px] transition-all duration-300 group ${isActive
           ? 'bg-[#CCFF00] text-black font-black shadow-[0_10px_20px_rgba(204,255,0,0.15)] translate-x-1'
           : 'text-neutral-400 hover:text-white hover:bg-white/5'
-      }`}
+        }`}
     >
       <span
         className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}
@@ -81,6 +82,7 @@ function NavItem({
         {icon}
       </span>
       <span className="text-sm font-bold tracking-tight">{label}</span>
-    </button>
+    </Link>
   );
 }
+

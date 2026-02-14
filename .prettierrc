@@ -1,8 +1,13 @@
 {
-  "semi": true,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "es5",
-  "printWidth": 80,
-  "arrowParens": "always"
+  "semi": true,               // Add semicolons at end of statements
+  "singleQuote": true,        // Use single quotes instead of double
+  "jsxSingleQuote": false,    // Keep JSX attributes with double quotes (optional)
+  "tabWidth": 2,              // 2 spaces per indent (common standard)
+  "useTabs": false,           // Use spaces, not tabs
+  "trailingComma": "es5",     // Add trailing commas where valid in ES5
+  "printWidth": 80,           // Wrap lines at ~80 characters (recommended for readability) :contentReference[oaicite:0]{index=0}
+  "arrowParens": "always",    // Always include parens in arrow functions
+  "bracketSpacing": true,     // `{ foo: bar }` spacing
+  "htmlWhitespaceSensitivity": "css", // Default sensible HTML behavior
+  "quoteProps": "as-needed"   // Only quote object props when necessary
 }
