@@ -1,0 +1,21 @@
+Focus: UI consistency, modularity, and clean React patterns.
+
+Step 1: Context Check: Scan package.json for UI libraries (Tailwind, Radix, Shadcn) and existing component patterns.
+
+Step 2: Modular Structure: Create a folder for the component. Include index.ts for clean exports and [ComponentName].tsx for the logic.
+
+Step 3: Implementation:
+
+Use Functional Components with TypeScript interfaces for props.
+
+Ensure all imports are absolute (e.g., @/components/...).
+
+Verify all JSX tags are closed and fragments <> </> are used only when necessary.
+
+Step 4: Best Practices:
+
+Extract complex logic into a custom hook if it exceeds 20 lines.
+
+Add basic Aria labels for accessibility.
+
+Ensure Tailwind classes are sorted (using prettier-plugin-tailwindcss logic).

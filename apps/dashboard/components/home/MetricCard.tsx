@@ -14,44 +14,44 @@ export interface MetricCardProps {
 
 const THEME_STYLES = {
   blue: {
-    bg: 'bg-blue-50',
-    text: 'text-blue-600',
-    ring: 'ring-blue-100',
-    border: 'border-blue-100',
-    badge: 'bg-blue-50 text-blue-700 border-blue-100',
-    iconBg: 'bg-blue-100/50 text-blue-600',
+    bg: 'bg-neutral-50',
+    text: 'text-neutral-900',
+    ring: 'ring-neutral-100',
+    border: 'border-neutral-100',
+    badge: 'bg-neutral-50 text-neutral-900 border-neutral-200',
+    iconBg: 'bg-neutral-100 text-neutral-900',
   },
   indigo: {
-    bg: 'bg-indigo-50',
-    text: 'text-indigo-600',
-    ring: 'ring-indigo-100',
-    border: 'border-indigo-100',
-    badge: 'bg-indigo-50 text-indigo-700 border-indigo-100',
-    iconBg: 'bg-indigo-100/50 text-indigo-600',
+    bg: 'bg-neutral-50',
+    text: 'text-neutral-900',
+    ring: 'ring-neutral-100',
+    border: 'border-neutral-100',
+    badge: 'bg-neutral-50 text-neutral-900 border-neutral-200',
+    iconBg: 'bg-neutral-100 text-neutral-900',
   },
   purple: {
-    bg: 'bg-purple-50',
-    text: 'text-purple-600',
-    ring: 'ring-purple-100',
-    border: 'border-purple-100',
-    badge: 'bg-purple-50 text-purple-700 border-purple-100',
-    iconBg: 'bg-purple-100/50 text-purple-600',
+    bg: 'bg-neutral-50',
+    text: 'text-neutral-900',
+    ring: 'ring-neutral-100',
+    border: 'border-neutral-100',
+    badge: 'bg-neutral-50 text-neutral-900 border-neutral-200',
+    iconBg: 'bg-neutral-100 text-neutral-900',
   },
   emerald: {
-    bg: 'bg-emerald-50',
-    text: 'text-emerald-600',
-    ring: 'ring-emerald-100',
-    border: 'border-emerald-100',
-    badge: 'bg-emerald-50 text-emerald-700 border-emerald-100',
-    iconBg: 'bg-emerald-100/50 text-emerald-600',
+    bg: 'bg-neutral-50',
+    text: 'text-neutral-900',
+    ring: 'ring-neutral-100',
+    border: 'border-neutral-100',
+    badge: 'bg-neutral-50 text-neutral-900 border-neutral-200',
+    iconBg: 'bg-neutral-100 text-neutral-900',
   },
   orange: {
-    bg: 'bg-orange-50',
-    text: 'text-orange-600',
-    ring: 'ring-orange-100',
-    border: 'border-orange-100',
-    badge: 'bg-orange-50 text-orange-700 border-orange-100',
-    iconBg: 'bg-orange-100/50 text-orange-600',
+    bg: 'bg-neutral-50',
+    text: 'text-neutral-900',
+    ring: 'ring-neutral-100',
+    border: 'border-neutral-100',
+    badge: 'bg-neutral-50 text-neutral-900 border-neutral-200',
+    iconBg: 'bg-neutral-100 text-neutral-900',
   },
 };
 
@@ -99,7 +99,7 @@ export function MetricCard({
         )}
       </div>
       <div className="relative z-10">
-        <p className="text-neutral-500 text-[11px] font-bold uppercase tracking-wider mb-1">
+        <p className="text-[11px] font-bold uppercase tracking-wider mb-1">
           {label}
         </p>
         <h3 className="text-3xl font-extrabold text-neutral-900 tracking-tight group-hover:scale-105 origin-left transition-transform duration-300">

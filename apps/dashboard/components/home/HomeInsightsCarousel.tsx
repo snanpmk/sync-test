@@ -33,7 +33,7 @@ export function HomeInsightsCarousel({ metrics }: HomeInsightsCarouselProps) {
 
     return (
         <div
-            className="w-full bg-[#1c1c1c] rounded-[32px] p-6 relative overflow-hidden shadow-xl border border-neutral-800"
+            className="w-full bg-neutral-900 rounded-[32px] p-6 relative overflow-hidden shadow-xl border border-neutral-800"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onTouchStart={() => setIsPaused(true)}
@@ -62,7 +62,7 @@ export function HomeInsightsCarousel({ metrics }: HomeInsightsCarouselProps) {
             </div>
 
             {/* Divider */}
-            <div className="h-px w-full bg-neutral-800 mb-4 relative z-10" />
+            <div className="w-full border-t border-neutral-600 mb-4 relative z-10" />
 
             {/* Content Area */}
             <div className="relative z-10 min-h-[100px]">
@@ -105,7 +105,7 @@ export function HomeInsightsCarousel({ metrics }: HomeInsightsCarouselProps) {
             </div>
 
             {/* Footer Link */}
-            <div className="mt-6 pt-4 border-t border-neutral-800 relative z-10">
+            <div className="mt-4 pt-2 border-t border-neutral-600 relative z-10">
                 <button
                     onClick={currentMetric.onAction}
                     className="text-sm font-bold text-[#ccff00] flex items-center gap-1 hover:gap-2 transition-all group"

@@ -13,21 +13,19 @@ export function QuickActions() {
     };
 
     return (
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <section className="flex items-center justify-between gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
             <QuickActionBtn
-                icon={<PenSquare size={20} />}
+                icon={<PenSquare color='#beee02' size={20} />}
                 label="Edit Profile"
                 href="/account"
-                colorTheme="orange"
             />
             <QuickActionBtn
-                icon={<Share2 size={20} />}
+                icon={<Share2 color='#beee02' size={20} />}
                 label="Share Profile"
                 onClick={handleShare}
-                colorTheme="blue"
             />
             <QuickActionBtn
-                icon={<Copy size={20} />}
+                icon={<Copy color='#beee02' size={20} />}
                 label="Copy Link"
                 onClick={() => {
                     if (navigator.clipboard) {
@@ -37,13 +35,11 @@ export function QuickActions() {
                         alert('Link copied!');
                     }
                 }}
-                colorTheme="emerald"
             />
             <QuickActionBtn
-                icon={<Download size={20} />}
+                icon={<Download color='#beee02' size={20} />}
                 label="Download QR"
                 onClick={() => alert('Downloading QR Code...')}
-                colorTheme="purple"
             />
         </section>
     );

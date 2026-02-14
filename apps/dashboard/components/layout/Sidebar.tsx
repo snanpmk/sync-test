@@ -1,6 +1,7 @@
 'use client';
 
 import { SynConnectLogo } from '@synconnect/ui';
+import { motion } from 'framer-motion';
 import { Home, BarChart3, Users, UserCircle } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -42,6 +43,12 @@ export function Sidebar() {
         />
       </nav>
 
+      <motion.div
+        layoutId="nav-glow"
+        className="absolute -bottom-2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_rgba(190,238,2,0.6)]"
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      />
+
       <div className="p-4 border-t border-neutral-800">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center">
@@ -72,8 +79,8 @@ function NavItem({
     <Link
       href={href}
       className={`w-full flex items-center gap-3 px-5 py-3.5 rounded-[20px] transition-all duration-300 group ${isActive
-          ? 'bg-[#CCFF00] text-black font-black shadow-[0_10px_20px_rgba(204,255,0,0.15)] translate-x-1'
-          : 'text-neutral-400 hover:text-white hover:bg-white/5'
+        ? 'bg-primary text-black font-black shadow-lg shadow-primary/15 translate-x-1'
+        : 'text-neutral-400 hover:text-white hover:bg-white/5'
         }`}
     >
       <span

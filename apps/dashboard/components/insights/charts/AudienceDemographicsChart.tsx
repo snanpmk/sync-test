@@ -8,14 +8,13 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  Area, // Added Area import
 } from 'recharts';
 
 const data = [
-  { age: '18-24', male: 25, female: 30 },
-  { age: '25-34', male: 45, female: 40 },
-  { age: '35-44', male: 30, female: 25 },
-  { age: '45-54', male: 15, female: 18 },
-  { age: '55+', male: 10, female: 12 },
+  { name: 'Mobile', value: 75, color: '#beee02' },
+  { name: 'Desktop', value: 20, color: '#222222' },
+  { name: 'Tablet', value: 5, color: '#4c4c4c' },
 ];
 
 export function AudienceDemographicsChart() {
@@ -52,17 +51,23 @@ export function AudienceDemographicsChart() {
               fontSize: '11px',
             }}
           />
-          <Bar
-            dataKey="male"
-            fill="#3b82f6"
-            radius={[4, 4, 0, 0]}
-            name="Male"
+          <Area
+            type="monotone"
+            dataKey="views"
+            stroke="#222222"
+            strokeWidth={2}
+            fillOpacity={1}
+            fill="url(#colorViews)"
+            name="Profile Views"
           />
-          <Bar
-            dataKey="female"
-            fill="#ec4899"
-            radius={[4, 4, 0, 0]}
-            name="Female"
+          <Area
+            type="monotone"
+            dataKey="clicks"
+            stroke="#beee02"
+            strokeWidth={2}
+            fillOpacity={1}
+            fill="url(#colorClicks)"
+            name="Total Clicks"
           />
         </BarChart>
       </ResponsiveContainer>
