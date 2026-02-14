@@ -8,6 +8,7 @@ import { TrafficAnalysis } from './TrafficAnalysis';
 import { AudienceAnalysis } from './AudienceAnalysis';
 import { InsightFilters } from './InsightFilters';
 import { Share2, Check } from 'lucide-react';
+import { useEffect } from 'react';
 
 export function InsightsView() {
   const [copied, setCopied] = useState(false);
@@ -20,6 +21,13 @@ export function InsightsView() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  useEffect(() => {
+    const scrollContainer = document.getElementById('main-scroll-container');
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }, [activePeriod]);
 
   return (
     <div className="p-4 lg:p-10 space-y-8 max-w-[1600px] mx-auto">
