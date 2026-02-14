@@ -21,13 +21,13 @@ export default function DashboardLayout({
     }, [pathname]);
 
     return (
-        <div className="flex h-screen bg-black text-white overflow-hidden font-sans">
+        <div className="flex h-[100dvh] w-full bg-black text-white overflow-hidden font-sans overscroll-none select-none">
             {/* Sidebar - Hidden on mobile, visible on lg screens */}
             {/* Note: Sidebar needs to be updated to handle active state via URL */}
             <Sidebar />
 
             {/* Main Content - Light Theme Inner Container */}
-            <main className="flex-1 flex flex-col h-full bg-[#F9FAFB] lg:rounded-[32px] lg:py-4 lg:mr-3 text-neutral-900 shadow-2xl transition-all overflow-hidden relative">
+            <main className="flex-1 flex flex-col h-full bg-[#F9FAFB] lg:rounded-[32px] lg:my-3 lg:mr-3 text-neutral-900 shadow-2xl transition-all overflow-hidden relative">
                 {/* Sticky Header outside scroll container */}
                 <DashboardHeader />
 
