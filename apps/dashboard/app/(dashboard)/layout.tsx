@@ -21,27 +21,25 @@ export default function DashboardLayout({
     }, [pathname]);
 
     return (
-        <div className="flex h-[100dvh] w-full bg-black text-white overflow-hidden font-sans overscroll-none select-none">
-            {/* Sidebar - Hidden on mobile, visible on lg screens */}
-            {/* Note: Sidebar needs to be updated to handle active state via URL */}
+        <div className="flex h-screen w-full bg-[#f8f7f5] text-neutral-900 overflow-hidden font-sans select-none p-4">
+            {/* Sidebar - Fixed/Sticky on Desktop */}
             <Sidebar />
 
-            {/* Main Content - Light Theme Inner Container */}
-            <main className="flex-1 flex flex-col h-full bg-[#F9FAFB] lg:rounded-[32px] lg:my-3 lg:mr-3 text-neutral-900 shadow-2xl transition-all overflow-hidden relative">
-                {/* Sticky Header outside scroll container */}
+            {/* Main Content Area */}
+            <main className="flex-1 flex flex-col h-full overflow-hidden relative lg:ml-6">
+                {/* Header is part of the scroll or sticky? Image shows it aligned with content */}
                 <DashboardHeader />
 
-                {/* Scrollable Content Area with hidden scrollbar */}
+                {/* Scrollable Content */}
                 <div
                     id="main-scroll-container"
-                    className="flex-1 overflow-y-auto pb-28 lg:pb-0 scrollbar-hide scroll-smooth"
+                    className="flex-1 overflow-y-auto pb-28 lg:pb-6 scrollbar-hide scroll-smooth"
                 >
                     {children}
                 </div>
             </main>
 
             {/* Mobile Bottom Nav */}
-            {/* Note: MobileNav needs to be updated to handle active state via URL */}
             <MobileNav />
         </div>
     );

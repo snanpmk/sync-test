@@ -77,10 +77,10 @@ export function MetricCard({
 
   if (variant === 'dark') {
     return (
-      <div className="bg-[#222222] rounded-[24px] p-6 flex flex-col justify-between shadow-xl border border-white/5 transition-all duration-300 group cursor-pointer h-full">
+      <div className="bg-[#222222]  rounded-[24px] p-6 flex flex-col justify-between shadow-xl border border-white/5 transition-all duration-300 group cursor-pointer h-full">
         <div className="flex justify-between items-start mb-2">
           <p className="text-neutral-400 text-xs font-medium uppercase tracking-wider">{label}</p>
-          <div className="flex items-center gap-1 text-[#beee02] text-xs font-bold">
+          <div className="flex items-center gap-1 text-primary text-xs font-bold">
             <ArrowUpRight size={14} strokeWidth={3} /> {trend}
           </div>
         </div>
@@ -98,7 +98,7 @@ export function MetricCard({
         <div className="mt-auto border-t border-white/10 pt-4">
           <button
             onClick={onAction}
-            className="text-[13px] font-bold text-[#beee02] flex items-center gap-1.5 transition-all hover:gap-2 uppercase tracking-wide"
+            className="text-[13px] font-bold text-primary flex items-center gap-1.5 transition-all hover:gap-2 uppercase tracking-wide"
           >
             {link}
           </button>
@@ -108,56 +108,23 @@ export function MetricCard({
   }
 
   return (
-    <div className="bg-white rounded-3xl p-5 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-neutral-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer h-full relative overflow-hidden">
-      {/* Soft gradient background blob for emotion */}
-      <div
-        className={`absolute -top-10 -right-10 w-32 h-32 rounded-full ${theme.bg} opacity-50 blur-3xl pointer-events-none group-hover:opacity-100 transition-opacity`}
-      />
-
-      <div className="flex justify-between items-start mb-4 relative z-10">
-        <div className={`p-3 rounded-2xl transition-colors ${theme.iconBg}`}>
+    <div className="bg-white rounded-[28px] p-6 flex flex-col justify-center h-full shadow-sm border border-neutral-100/50 hover:shadow-md transition-all duration-300 group cursor-pointer">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full bg-[#CCFF00] flex items-center justify-center text-black shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
           {icon}
         </div>
-        {isGrowth ? (
-          <span
-            className={`text-xs font-bold px-2.5 py-1 rounded-full border ${theme.badge} shadow-sm`}
-          >
-            {value}
-          </span>
-        ) : (
-          <span
-            className={`flex items-center text-xs font-bold px-2 py-1 rounded-full border gap-1 ${theme.badge} shadow-sm`}
-          >
-            <ArrowUpRight size={12} strokeWidth={3} /> {trend}
-          </span>
-        )}
-      </div>
-      <div className="relative z-10">
-        <p className="text-[11px] font-bold uppercase tracking-wider mb-1">
-          {label}
-        </p>
-        <h3 className="text-3xl font-extrabold text-neutral-900 tracking-tight group-hover:scale-105 origin-left transition-transform duration-300">
-          {isGrowth ? (
-            trend
-          ) : isNumeric ? (
-            <CountUp end={numericValue} suffix={suffix} decimals={decimals} />
-          ) : (
-            value
-          )}
-        </h3>
-        <button
-          onClick={onAction}
-          className={`text-xs font-semibold ${theme.text} mt-3 flex items-center gap-1.5 transition-colors group/btn opacity-80 group-hover:opacity-100`}
-        >
-          {link}{' '}
-          <span className="bg-white rounded-full p-0.5 shadow-sm">
-            <ChevronRight
-              size={10}
-              strokeWidth={3}
-              className="group-hover/btn:translate-x-0.5 transition-transform"
-            />
-          </span>
-        </button>
+        <div>
+          <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest leading-none mb-1">
+            {label}
+          </p>
+          <h3 className="text-2xl font-black text-neutral-900 tracking-tight">
+            {isNumeric ? (
+              <CountUp end={numericValue} suffix={suffix} decimals={decimals} />
+            ) : (
+              value
+            )}
+          </h3>
+        </div>
       </div>
     </div>
   );

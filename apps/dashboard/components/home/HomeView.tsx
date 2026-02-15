@@ -1,4 +1,6 @@
-import { Share2, Eye, Link as LinkIcon, TrendingUp, Star } from 'lucide-react';
+'use client';
+
+import { Share2, Eye, Link as LinkIcon, TrendingUp } from 'lucide-react';
 import { SmartSuggestion } from './SmartSuggestion';
 import { HomeInsightsCarousel } from './HomeInsightsCarousel';
 import { MetricCard, MetricCardProps } from './MetricCard';
@@ -25,7 +27,6 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       trend: '+12%',
       link: 'View Insights',
       colorTheme: 'blue',
-      onAction: () => { }, // Handled by link wrapper in MetricCard if we add it, or we just rely on parent
     },
     {
       icon: <LinkIcon size={18} strokeWidth={2.5} />,
@@ -34,7 +35,6 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       trend: '+5%',
       link: 'View Insights',
       colorTheme: 'indigo',
-      onAction: () => { },
     },
     {
       icon: <TrendingUp size={18} strokeWidth={2.5} />,
@@ -43,107 +43,102 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       trend: '+2.4%',
       link: 'View Details',
       colorTheme: 'emerald',
-      onAction: () => { },
     },
   ];
-  const THEME_STYLES = {
-    orange: {
-      bg: 'bg-neutral-50',
-      text: 'text-neutral-900',
-      border: 'border-neutral-100',
-      hover: 'hover:bg-neutral-100',
-    },
-    blue: {
-      bg: 'bg-neutral-50',
-      text: 'text-neutral-900',
-      border: 'border-neutral-100',
-      hover: 'hover:bg-neutral-100',
-    },
-    indigo: {
-      bg: 'bg-neutral-50',
-      text: 'text-neutral-900',
-      border: 'border-neutral-100',
-      hover: 'hover:bg-neutral-100',
-    },
-    purple: {
-      bg: 'bg-neutral-50',
-      text: 'text-neutral-900',
-      border: 'border-neutral-100',
-      hover: 'hover:bg-neutral-100',
-    },
-    emerald: {
-      bg: 'bg-neutral-50',
-      text: 'text-neutral-900',
-      border: 'border-neutral-100',
-      hover: 'hover:bg-neutral-100',
-    },
-    black: {
-      bg: 'bg-neutral-50',
-      text: 'text-neutral-900',
-      border: 'border-neutral-100',
-      hover: 'hover:bg-neutral-100',
-    },
-  };
 
   return (
-    <div className="p-4 md:p-8 pt-0 md:pt-0 mx-auto space-y-6 md:space-y-8 relative">
-      {/* 1. Performance Snapshot (High-Level Only) */}
-      <section>
-        {/* Mobile Carousel */}
-        <div className="block md:hidden">
-          <HomeInsightsCarousel metrics={metrics} />
+    <div className="container mx-auto max-w-[1400px] space-y-6">
+      {/* 1. Mobile Carousel (Only visible on small screens) */}
+      <div className="lg:hidden">
+        <HomeInsightsCarousel metrics={metrics} />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Left Section (Column 1-8 on Desktop) */}
+        <div className="lg:col-span-8 space-y-6">
+
+          {/* A. Desktop Only: Profile Strength Bar */}
+          <div className="hidden lg:block">
+            <ProfileStrength />
+          </div>
+
+          {/* B. Desktop Only: Stats & Achievement Grid */}
+          <div className="hidden lg:grid grid-cols-4 grid-rows-2 gap-4">
+            {/* Row 1, Col 1 */}
+            <div className="col-span-1">
+              <MetricCard {...metrics[0]} />
+            </div>
+            {/* Row 1, Col 2 */}
+            <div className="col-span-1">
+              <MetricCard {...metrics[1]} />
+            </div>
+            {/* Row 1&2, Col 3-4 */}
+            <div className="col-span-2 row-span-2">
+              <WeeklyAchievement />
+            </div>
+            {/* Row 2, Col 1 */}
+            <div className="col-span-1">
+              <MetricCard {...metrics[2]} />
+            </div>
+            {/* Row 2, Col 2 (Empty) */}
+            <div className="col-span-1"></div>
+          </div>
+
+          {/* C. Mobile Only: Quick Actions & Profile Strength Sequence */}
+          <div className="lg:hidden space-y-6">
+            <QuickActions />
+            <ProfileStrength />
+          </div>
+
+          {/* D. Desktop Only: Quick Actions Bar */}
+          <div className="hidden lg:block">
+            <QuickActions />
+          </div>
+
+          {/* E. Desktop Only: Recent Activities */}
+          <section className="hidden lg:block bg-white rounded-[40px] p-8 lg:p-10 border border-neutral-100/60 shadow-sm">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl lg:text-2xl font-bold text-neutral-900 tracking-tight">Recent Activities</h3>
+              <button className="bg-neutral-900 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-black transition-all">
+                View All
+              </button>
+            </div>
+            <RecentActivityList />
+          </section>
+
+          {/* F. Mobile Only: Weekly Achievement at bottom - REMOVED from here to move below performance */}
         </div>
 
-        {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-          {metrics.map((metric, i) => (
-            <MetricCard key={i} {...metric} />
-          ))}
-        </div>
-      </section>
+        {/* Right Section (Column 9-12 on Desktop) */}
+        <div className="lg:col-span-4 space-y-6">
+          <div className="h-full">
+            <WeeklyPerformance />
+          </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        {/* Row 1 on Desktop */}
-        <div className="lg:col-span-3">
-          <QuickActions />
-        </div>
-
-        {/* Column 1 */}
-        <div className="space-y-6 flex flex-col">
-          <ProfileStrength />
-        </div>
-
-        {/* Column 2 (Wide) */}
-        <div className="lg:col-span-2 space-y-6 flex flex-col">
-          <WeeklyPerformance />
-          {/* Mobile Only: Weekly Achievement flow (Profile -> Performance -> Achievement) */}
-          <div className="block lg:hidden">
+          {/* F. Mobile Only: Weekly Achievement after performance */}
+          <div className="lg:hidden">
             <WeeklyAchievement />
           </div>
-        </div>
 
-        {/* Row 2 / Grid flow */}
-        {/* Desktop: Weekly Achievement takes a slot */}
-        <div className="hidden lg:block">
-          <WeeklyAchievement />
-        </div>
+          {/* F. Suggested For You */}
+          <SuggestedActions>
+            {ACTIONABLE_SUGGESTIONS.map((s, i) => (
+              <SmartSuggestion key={i} text={s.text} type={s.type} />
+            ))}
+          </SuggestedActions>
 
-        {/* Desktop: Suggestions List */}
-        <div className="lg:col-span-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
-            <SuggestedActions>
-              {ACTIONABLE_SUGGESTIONS.map((s, i) => (
-                <SmartSuggestion key={i} text={s.text} type={s.type} />
-              ))}
-            </SuggestedActions>
-
-            {/* Recent Activity or other widgets */}
+          {/* G. Mobile Only: Recent Activities (Shown last) */}
+          <section className="lg:hidden bg-white rounded-[40px] p-8 border border-neutral-100/60 shadow-sm">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold text-neutral-900 tracking-tight">Recent Activities</h3>
+              <button className="bg-neutral-900 text-white px-5 py-2 rounded-full text-[10px] font-bold hover:bg-black transition-all">
+                View All
+              </button>
+            </div>
             <RecentActivityList />
-          </div>
+          </section>
         </div>
       </div>
     </div>
   );
 }
-

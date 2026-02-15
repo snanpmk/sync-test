@@ -1,6 +1,6 @@
 'use client';
 
-import { SynConnectLogo } from '@synconnect/ui';
+import { SynConnectLogo, SynConnectLogoLight } from '@synconnect/ui';
 import { motion } from 'framer-motion';
 import { Home, BarChart3, Users, UserCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -8,55 +8,54 @@ import { usePathname } from 'next/navigation';
 
 export function Sidebar() {
   const pathname = usePathname();
-  const isActive = (path: string) => pathname?.startsWith(path);
+  const isActive = (path: string) => pathname === path || (path !== '/' && pathname?.startsWith(path));
 
   return (
-    <aside className="hidden lg:flex w-72 border-r border-white/5 bg-[#0a0a0a] flex-col h-full">
-      <div className="p-8">
-        <SynConnectLogo className="h-8 w-auto text-white" />
+    <aside className="hidden lg:flex w-72 bg-brand-black flex-col h-full rounded-[40px] shadow-2xl overflow-hidden">
+      {/* Logo Section */}
+      <div className="p-10">
+       <SynConnectLogoLight />
       </div>
 
-      <nav className="flex-1 px-4 space-y-2 mt-4">
+      {/* Navigation */}
+      <nav className="flex-1 px-4 space-y-3">
         <NavItem
-          icon={<Home size={20} />}
+          icon={<Home size={22} />}
           label="Home"
           isActive={isActive('/home')}
           href="/home"
         />
         <NavItem
-          icon={<BarChart3 size={20} />}
+          icon={<BarChart3 size={22} />}
           label="Insights"
           isActive={isActive('/insights')}
           href="/insights"
         />
         <NavItem
-          icon={<Users size={20} />}
+          icon={<Users size={22} />}
           label="Connections"
           isActive={isActive('/connections')}
           href="/connections"
         />
         <NavItem
-          icon={<UserCircle size={20} />}
+          icon={<UserCircle size={22} />}
           label="Account"
           isActive={isActive('/account')}
           href="/account"
         />
       </nav>
 
-      <motion.div
-        layoutId="nav-glow"
-        className="absolute -bottom-2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_rgba(190,238,2,0.6)]"
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      />
-
-      <div className="p-4 border-t border-neutral-800">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center">
-            <span className="font-bold text-primary">SC</span>
-          </div>
-          <div>
-            <p className="text-sm font-medium">SynConnect User</p>
-            <p className="text-xs text-neutral-400">Pro Plan</p>
+      {/* User Profile Hook */}
+      <div className="p-6 mt-auto">
+        <div className="bg-[#151515] rounded-[32px] p-5 group cursor-pointer hover:bg-[#1c1c1c] transition-all duration-300">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center border border-white/10">
+              <span className="text-neutral-500 font-bold text-xs">SC</span>
+            </div>
+            <div className="flex flex-col min-w-0">
+              <p className="text-[14px] font-bold text-white truncate">SynConnect User</p>
+              <p className="text-[10px] text-[#CCFF00] font-black uppercase tracking-widest mt-0.5">Pro Plan</p>
+            </div>
           </div>
         </div>
       </div>
@@ -78,18 +77,21 @@ function NavItem({
   return (
     <Link
       href={href}
-      className={`w-full flex items-center gap-3 px-5 py-3.5 rounded-[20px] transition-all duration-300 group ${isActive
-        ? 'bg-primary text-black font-black shadow-lg shadow-primary/15 translate-x-1'
-        : 'text-neutral-400 hover:text-white hover:bg-white/5'
+      className={`w-full flex items-center gap-4 px-6 py-4 rounded-[24px] transition-all duration-300 relative group ${isActive
+        ? 'bg-[#CCFF00] text-black font-bold'
+        : 'text-neutral-500 hover:text-white hover:bg-white/5'
         }`}
     >
-      <span
-        className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}
-      >
+      <span className={`${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
         {icon}
       </span>
-      <span className="text-sm font-bold tracking-tight">{label}</span>
+      <span className="text-[16px] font-bold tracking-tight">{label}</span>
+      {isActive && (
+        <motion.div
+          layoutId="active-nav-dot"
+          className="ml-auto w-1.5 h-1.5 bg-black rounded-full"
+        />
+      )}
     </Link>
   );
 }
-
