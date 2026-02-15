@@ -21,12 +21,12 @@ export default function DashboardLayout({
     }, [pathname]);
 
     return (
-        <div className="flex h-screen w-full bg-[#f8f7f5] text-neutral-900 overflow-hidden font-sans select-none p-4">
+        <div className="flex h-screen w-full bg-[#f8f7f5] text-neutral-900 overflow-hidden font-sans select-none p-2.5">
             {/* Sidebar - Fixed/Sticky on Desktop */}
             <Sidebar />
 
             {/* Main Content Area */}
-            <main className="flex-1 flex flex-col h-full overflow-hidden relative lg:ml-6">
+            <main className="flex-1 flex flex-col h-full overflow-hidden relative lg:ml-4">
                 {/* Header is part of the scroll or sticky? Image shows it aligned with content */}
                 <DashboardHeader />
 

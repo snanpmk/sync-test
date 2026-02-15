@@ -105,7 +105,7 @@ export function ConnectionsView() {
     );
 
   return (
-    <div className="p-4 lg:p-10 space-y-8 animate-in fade-in slide-in-from-bottom-6 duration-700">
+    <div className="p-2 lg:p-6 space-y-5 animate-in fade-in slide-in-from-bottom-6 duration-700">
       {/* Header Context & Search */}
       <ConnectionsHeader
         searchQuery={searchQuery}

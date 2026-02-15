@@ -5,7 +5,7 @@ import { MetricCard } from '../home/MetricCard';
 
 export function PrimaryStats() {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <MetricCard
                 icon={<Users size={20} />}
                 label="Profile Views"
@@ -16,7 +16,7 @@ export function PrimaryStats() {
             />
             <MetricCard
                 icon={<MousePointer2 size={20} />}
-                label="Link Clicks"
+                label="Direct Clicks"
                 value="8,540"
                 trend="+25%"
                 link="Click Map"
@@ -32,7 +32,7 @@ export function PrimaryStats() {
             />
             <MetricCard
                 icon={<TrendingUp size={20} />}
-                label="Phone Links"
+                label="Share Links"
                 value="1,245"
                 trend="+22%"
                 link="Share History"

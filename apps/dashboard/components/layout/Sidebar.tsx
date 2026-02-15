@@ -14,7 +14,7 @@ export function Sidebar() {
     <aside className="hidden lg:flex w-72 bg-brand-black flex-col h-full rounded-[40px] shadow-2xl overflow-hidden">
       {/* Logo Section */}
       <div className="p-10">
-       <SynConnectLogoLight />
+        <SynConnectLogoLight />
       </div>
 
       {/* Navigation */}

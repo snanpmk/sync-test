@@ -8,7 +8,7 @@ interface PerformanceOverviewProps {
 
 export function PerformanceOverview({ activePeriod }: PerformanceOverviewProps) {
     return (
-        <div className="bg-[#222222] p-6 lg:p-8 rounded-[32px] border border-white/5 shadow-2xl">
+        <div className="bg-[#222222] p-6 lg:p-10 rounded-[40px] border border-white/5 shadow-2xl">
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h2 className="text-xl font-bold text-white">
@@ -24,7 +24,7 @@ export function PerformanceOverview({ activePeriod }: PerformanceOverviewProps) 
                         <span className="text-xs font-bold text-neutral-400">Views</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-[#beee02]" />
+                        <div className="w-3 h-3 rounded-full bg-primary" />
                         <span className="text-xs font-bold text-neutral-400">Clicks</span>
                     </div>
                 </div>

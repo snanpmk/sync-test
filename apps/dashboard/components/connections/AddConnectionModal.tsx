@@ -191,7 +191,7 @@ export function AddConnectionModal({
                 </button>
                 <button
                   type="submit"
-                  className="flex-2 py-4 bg-black text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-neutral-200 flex items-center justify-center gap-2"
+                  className="flex-2 py-4 bg-primary text-black rounded-full text-xs font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/10 flex items-center justify-center gap-2"
                 >
                   <Plus size={16} strokeWidth={3} /> Save Connection
                 </button>

@@ -66,94 +66,72 @@ export function ConnectionCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
-      className="bg-white rounded-[32px] p-6 border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all group flex flex-col h-full"
+      className="bg-[#151515] rounded-[32px] p-5 border border-white/5 shadow-2xl transition-all group flex flex-col h-full relative overflow-hidden"
     >
-      <div className="flex justify-between items-start mb-6">
-        <div className="relative">
-          <div className="w-16 h-16 rounded-2xl bg-neutral-900 flex items-center justify-center text-white ring-4 ring-neutral-50 shadow-lg shadow-neutral-200">
-            <span className="text-xl font-black tracking-tighter">
+      {/* Top Badge & Actions */}
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-black shadow-lg">
+            <span className="text-lg font-black tracking-tighter">
               {initials}
             </span>
           </div>
-          <div
-            className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-white ${isStarred ? 'bg-amber-400' : 'bg-neutral-300'}`}
-          />
+          {status === 'new' && (
+            <div className="bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-lg">
+              <span className="text-[10px] font-black text-primary uppercase tracking-widest">New</span>
+            </div>
+          )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-0.5">
           <button
             onClick={onToggleStar}
-            className={`p-2 hover:bg-neutral-50 rounded-xl transition-colors ${isStarred ? 'text-amber-500' : 'text-neutral-400 hover:text-amber-500'}`}
+            className={`p-1.5 transition-colors ${isStarred ? 'text-amber-400' : 'text-neutral-600 hover:text-amber-400'}`}
           >
-            <Star size={18} fill={isStarred ? 'currentColor' : 'none'} />
+            <Star size={16} fill={isStarred ? 'currentColor' : 'none'} />
           </button>
           <button
             onClick={onDelete}
-            className="p-2 hover:bg-neutral-50 rounded-xl transition-colors text-neutral-400 hover:text-red-500"
+            className="p-1.5 transition-colors text-neutral-600 hover:text-red-500"
           >
-            <MoreHorizontal size={18} />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
           </button>
         </div>
       </div>
 
-      <div className="flex-1">
-        <div className="flex items-center gap-2 mb-1">
-          <h3 className="text-lg font-bold text-neutral-900 leading-tight tracking-tight">
-            {name}
-          </h3>
-          <button
-            onClick={cycleStatus}
-            className={`flex items-center gap-1 text-[9px] font-black uppercase px-3 py-1 rounded-full transition-all active:scale-95 hover:shadow-md hover:ring-2 hover:ring-current/10 cursor-pointer border border-transparent hover:border-current/20 ${STATUS_COLORS[status]}`}
-            title="Click to cycle status"
-          >
-            {status.replace('_', ' ')}
-            <ChevronDown size={10} strokeWidth={3} className="opacity-60" />
-          </button>
-        </div>
-        <p className="text-neutral-400 text-xs font-medium mb-4">{role}</p>
+      {/* Info Section */}
+      <div className="flex-1 space-y-0.5 mb-4">
+        <h3 className="text-lg font-bold text-white tracking-tight">
+          {name}
+        </h3>
+        <p className="text-neutral-500 text-[11px] font-medium pb-3">{role}</p>
 
-        <div className="space-y-2.5 mb-6">
-          <div className="flex items-center gap-2.5 text-neutral-500">
-            <div className="w-8 h-8 rounded-lg bg-neutral-50 flex items-center justify-center">
-              <MapPin size={14} className="text-neutral-400" />
-            </div>
-            <span className="text-xs font-bold leading-none">{placeMet}</span>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2.5 text-neutral-400">
+            <MapPin size={12} className="text-white" />
+            <span className="text-[11px] font-medium">{placeMet}</span>
           </div>
-          <div className="flex items-center gap-2.5 text-neutral-500">
-            <div className="w-8 h-8 rounded-lg bg-neutral-50 flex items-center justify-center">
-              <Calendar size={14} className="text-neutral-400" />
-            </div>
-            <span className="text-xs font-bold leading-none">{dateMet}</span>
+          <div className="flex items-center gap-2.5 text-neutral-400">
+            <Calendar size={12} className="text-white" />
+            <span className="text-[11px] font-medium">{dateMet}</span>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 mt-auto pt-5 border-t border-neutral-100/50">
+      {/* Action Buttons */}
+      <div className="grid grid-cols-2 gap-3 mt-auto">
         <button
-          className="flex items-center justify-center gap-2 py-3.5 bg-neutral-900 text-white rounded-2xl text-xs font-black hover:translate-y-[-2px] transition-all active:scale-95 shadow-xl shadow-neutral-200"
+          className="flex items-center justify-center gap-2 py-3 border border-white/10 text-primary rounded-[16px] text-[10px] font-black hover:bg-white/5 transition-all active:scale-95"
           onClick={() => window.open('tel:+123456789')}
         >
-          <Phone size={14} className="text-[#CCFF00]" /> CALL
+          <Phone size={12} fill="currentColor" /> CALL
         </button>
         <button
-          className="flex items-center justify-center gap-2 py-3.5 bg-[#CCFF00] text-black rounded-2xl text-xs font-black hover:translate-y-[-2px] transition-all active:scale-95 shadow-xl shadow-[#CCFF00]/10"
+          className="flex items-center justify-center gap-2 py-3 bg-primary text-black rounded-[16px] text-[10px] font-black hover:scale-[1.02] transition-all active:scale-95 shadow-xl shadow-primary/10"
           onClick={() => window.open('sms:+123456789')}
         >
-          <MessageSquare size={14} /> MESSAGE
-        </button>
-      </div>
-
-      <div className="mt-3 flex items-center justify-between px-1">
-        <div className="flex -space-x-2">
-          <div className="w-6 h-6 rounded-full bg-blue-50 border-2 border-white flex items-center justify-center text-blue-500">
-            <Linkedin size={10} />
-          </div>
-          <div className="w-6 h-6 rounded-full bg-neutral-50 border-2 border-white flex items-center justify-center text-neutral-500">
-            <ExternalLink size={10} />
-          </div>
-        </div>
-        <button className="text-[10px] font-black uppercase text-neutral-400 hover:text-neutral-900 tracking-widest transition-colors">
-          View Detail
+          <MessageSquare size={12} fill="currentColor" /> MESSAGE
         </button>
       </div>
     </motion.div>
