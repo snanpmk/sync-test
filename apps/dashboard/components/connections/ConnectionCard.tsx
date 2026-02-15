@@ -66,7 +66,7 @@ export function ConnectionCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#151515] rounded-[32px] p-5 border border-white/5 shadow-2xl transition-all group flex flex-col h-full relative overflow-hidden"
+      className="bg-brand-black rounded-[32px] p-5 border border-white/5 shadow-2xl transition-all group flex flex-col h-full relative overflow-hidden"
     >
       {/* Top Badge & Actions */}
       <div className="flex justify-between items-start mb-4">

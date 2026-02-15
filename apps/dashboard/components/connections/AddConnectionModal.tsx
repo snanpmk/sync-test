@@ -65,35 +65,32 @@ export function AddConnectionModal({
             className="fixed inset-0 bg-black/60 backdrop-blur-md z-100"
           />
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-white rounded-[40px] shadow-2xl z-101 overflow-hidden"
+            exit={{ opacity: 0, scale: 0.95, y: 40 }}
+            className="fixed left-0 sm:left-1/2 bottom-0 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full sm:max-w-lg bg-white rounded-t-[32px] sm:rounded-[40px] shadow-2xl z-101 overflow-hidden max-h-[95vh] flex flex-col"
           >
-            <div className="bg-neutral-900 p-8 text-white relative">
+            <div className="bg-neutral-900 p-6 sm:p-8 text-white relative shrink-0">
               <button
                 onClick={onClose}
-                className="absolute right-6 top-6 p-2 hover:bg-white/10 rounded-xl transition-colors"
+                className="absolute right-4 top-4 sm:right-6 sm:top-6 p-2 hover:bg-white/10 rounded-xl transition-colors"
               >
                 <X size={20} />
               </button>
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-primary text-black rounded-lg">
-                  <User size={20} strokeWidth={3} />
+                  <User size={18} strokeWidth={3} />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
+                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
                   New Relationship
                 </span>
               </div>
-              <h2 className="text-3xl font-black tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
                 Add Connection
               </h2>
-              <p className="text-neutral-400 text-sm mt-2 font-medium">
-                Capture the details of someone you just met.
-              </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6 overflow-y-auto">
               <div className="space-y-4">
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-black uppercase tracking-widest text-neutral-400 ml-1">
@@ -112,7 +109,7 @@ export function AddConnectionModal({
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full pl-12 pr-4 py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
+                      className="w-full pl-12 pr-4 py-3.5 sm:py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
                     />
                   </div>
                 </div>
@@ -133,12 +130,12 @@ export function AddConnectionModal({
                       onChange={(e) =>
                         setFormData({ ...formData, role: e.target.value })
                       }
-                      className="w-full pl-12 pr-4 py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
+                      className="w-full pl-12 pr-4 py-3.5 sm:py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-black uppercase tracking-widest text-neutral-400 ml-1">
                       Place Met
@@ -155,7 +152,7 @@ export function AddConnectionModal({
                         onChange={(e) =>
                           setFormData({ ...formData, placeMet: e.target.value })
                         }
-                        className="w-full pl-12 pr-4 py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
+                        className="w-full pl-12 pr-4 py-3.5 sm:py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
                       />
                     </div>
                   </div>
@@ -174,26 +171,26 @@ export function AddConnectionModal({
                         onChange={(e) =>
                           setFormData({ ...formData, dateMet: e.target.value })
                         }
-                        className="w-full pl-12 pr-4 py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
+                        className="w-full pl-12 pr-4 py-3.5 sm:py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-neutral-100 transition-all"
                       />
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 flex gap-4">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4 sm:pb-0">
+                <button
+                  type="submit"
+                  className="w-full order-1 sm:order-2 py-4 bg-primary text-black rounded-full text-xs font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/10 flex items-center justify-center gap-2"
+                >
+                  <Plus size={16} strokeWidth={3} /> Save Connection
+                </button>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-4 text-xs font-black uppercase tracking-widest text-neutral-400 hover:text-black transition-colors"
+                  className="w-full order-2 sm:order-1 py-4 text-xs font-black uppercase tracking-widest text-neutral-400 hover:text-black transition-colors"
                 >
                   Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="flex-2 py-4 bg-primary text-black rounded-full text-xs font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/10 flex items-center justify-center gap-2"
-                >
-                  <Plus size={16} strokeWidth={3} /> Save Connection
                 </button>
               </div>
             </form>
