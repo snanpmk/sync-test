@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Package, Layers, Wrench, Trash2, Plus } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 import { Card } from './Card';
+import { Button } from '../ui/Button';
 
 interface Product {
     id: string;
@@ -79,9 +80,12 @@ export function CatalogTab() {
                             </div>
                         </Card>
                     ))}
-                    <button className="w-full py-6 border-2 border-dashed border-neutral-200 rounded-[32px] text-neutral-400 font-black text-xs uppercase tracking-widest hover:border-neutral-900 hover:text-neutral-900 transition-all flex items-center justify-center gap-2 bg-white">
-                        <Plus size={16} /> Create New Product
-                    </button>
+                    <Button
+                        variant="secondary"
+                        className="w-full py-6 border-2 border-dashed border-neutral-200 bg-white hover:border-neutral-900 text-neutral-400"
+                    >
+                        <Plus size={16} className="mr-2" /> Create New Product
+                    </Button>
                 </div>
             </div>
 
@@ -118,9 +122,12 @@ export function CatalogTab() {
                             </div>
                         </Card>
                     ))}
-                    <button className="w-full py-6 border-2 border-dashed border-neutral-200 rounded-[32px] text-neutral-400 font-black text-xs uppercase tracking-widest hover:border-neutral-900 hover:text-neutral-900 transition-all flex items-center justify-center gap-2 bg-white">
-                        <Plus size={16} /> Add Service Offering
-                    </button>
+                    <Button
+                        variant="secondary"
+                        className="w-full py-6 border-2 border-dashed border-neutral-200 bg-white hover:border-neutral-900 text-neutral-400"
+                    >
+                        <Plus size={16} className="mr-2" /> Add Service Offering
+                    </Button>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 import { Layers, Wrench, Trash2, CheckCircle2 } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 import { Card } from './Card';
+import { Button } from '../ui/Button';
 
 export function CRMTab() {
     return (
@@ -19,9 +20,9 @@ export function CRMTab() {
                         <h3 className="font-bold text-neutral-900">
                             Custom Status Labels
                         </h3>
-                        <button className="text-[10px] font-black uppercase bg-neutral-900 text-white px-3 py-1.5 rounded-lg active:scale-95 transition-all">
+                        <Button size="sm" variant="dark">
                             Add New
-                        </button>
+                        </Button>
                     </div>
                     <div className="space-y-3">
                         {[
@@ -64,7 +65,7 @@ export function CRMTab() {
 
             <Card className="bg-neutral-900 text-white border-neutral-800">
                 <div className="flex items-center gap-4 mb-4">
-                    <div className="p-2 bg-[#CCFF00] text-black rounded-lg">
+                    <div className="p-2 bg-primary text-black rounded-lg">
                         <CheckCircle2 size={18} strokeWidth={3} />
                     </div>
                     <h3 className="font-bold text-lg">Smart CRM Suggestions</h3>
@@ -77,8 +78,8 @@ export function CRMTab() {
                     <span className="text-sm font-bold">
                         Auto-Follow Up Notifications
                     </span>
-                    <button className="w-12 h-6 bg-[#CCFF00] rounded-full relative">
-                        <div className="absolute right-1 top-1 w-4 h-4 bg-black rounded-full shadow-lg" />
+                    <button className="relative w-11 h-6 rounded-full transition-colors duration-200 outline-none shrink-0 bg-primary">
+                        <div className="absolute top-1 right-1 w-4 h-4 bg-black rounded-full transition-all duration-200 shadow-sm" />
                     </button>
                 </div>
             </Card>

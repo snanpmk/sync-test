@@ -3,6 +3,8 @@
 import { Youtube, Image as ImageIcon, Trash2, Plus, MousePointer2 } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 import { Card } from './Card';
+import { Input } from '../ui/Input';
+import { Button } from '../ui/Button';
 
 export function MediaTab() {
     return (
@@ -19,16 +21,7 @@ export function MediaTab() {
                     YouTube Video Feature
                 </h3>
                 <div className="space-y-4">
-                    <div className="space-y-1.5">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-neutral-400 ml-1">
-                            Video URL
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="https://youtube.com/watch?v=..."
-                            className="w-full px-5 py-4 bg-neutral-50 border border-neutral-100 rounded-2xl text-sm font-bold focus:ring-4 focus:ring-neutral-100 transition-all outline-none"
-                        />
-                    </div>
+                    <Input label="Video URL" placeholder="https://youtube.com/watch?v=..." />
                     <div className="aspect-video rounded-3xl bg-neutral-100 flex items-center justify-center border-2 border-dashed border-neutral-200">
                         <p className="text-xs font-bold text-neutral-400">
                             Video Preview Placeholder
@@ -43,9 +36,9 @@ export function MediaTab() {
                         <ImageIcon size={18} className="text-neutral-900" />
                         Visual Showcase Gallery
                     </h3>
-                    <button className="text-[10px] font-black uppercase text-neutral-400 hover:text-black tracking-widest">
+                    <Button variant="ghost" size="sm">
                         Clear All
-                    </button>
+                    </Button>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {[1, 2, 3].map((n) => (
@@ -90,9 +83,12 @@ export function MediaTab() {
                             <Trash2 size={16} />
                         </button>
                     </div>
-                    <button className="w-full py-4 border-2 border-dashed border-neutral-200 rounded-2xl text-neutral-400 font-black text-[10px] uppercase tracking-widest hover:border-black hover:text-black transition-all">
+                    <Button
+                        variant="secondary"
+                        className="w-full py-4 border-2 border-dashed border-neutral-200 bg-white hover:border-neutral-900 text-neutral-400"
+                    >
                         + Add Custom Button
-                    </button>
+                    </Button>
                 </div>
             </Card>
         </div>

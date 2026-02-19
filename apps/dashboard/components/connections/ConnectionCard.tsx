@@ -68,7 +68,7 @@ export function ConnectionCard({
       animate={{ opacity: 1, y: 0 }}
       className="bg-brand-black rounded-[32px] p-5 border border-white/5 shadow-2xl transition-all group flex flex-col h-full relative overflow-hidden"
     >
-      {/* Top Badge & Actions */}
+     
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-black shadow-lg">
