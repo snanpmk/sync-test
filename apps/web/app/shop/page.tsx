@@ -98,7 +98,7 @@ export default function ShopPage() {
               business growth. Modern networking, built on premium NFC hardware.
             </motion.p>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -122,7 +122,7 @@ export default function ShopPage() {
                   className="w-full bg-white/5 border border-white/10 rounded-full py-3.5 pl-12 pr-6 text-sm focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
         </section>
 
@@ -140,71 +140,74 @@ export default function ShopPage() {
                 <motion.div
                   key={product.id}
                   variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  className="group relative flex flex-col sm:flex-row bg-white/[0.03] border border-white/5 rounded-3xl overflow-hidden hover:border-primary/20 transition-all shadow-2xl"
+                  whileHover={{ y: -4 }}
+                  className="group relative flex flex-col-reverse sm:flex-row bg-white/[0.02] border border-white/[0.05] rounded-3xl overflow-hidden hover:border-white/10 hover:bg-white/[0.04] transition-all shadow-lg ring-1 ring-white/5"
                 >
-                  {/* Image Part */}
-                  <div className="relative w-full sm:w-2/5 aspect-video sm:aspect-square overflow-hidden border-b sm:border-b-0 sm:border-r border-white/5">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                    <div className="absolute top-4 left-4 lg:top-6 lg:left-6">
-                      <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[10px] font-black uppercase tracking-widest text-primary">
-                        {product.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content Part */}
-                  <div className="flex-1 p-6 lg:p-10 flex flex-col">
-                    <div className="flex items-center gap-1 mb-2">
-                      <Star className="w-4 h-4 text-primary fill-primary" />
-                      <span className="text-sm font-bold">
-                        {product.rating}
-                      </span>
-                      <span className="text-white/40 text-xs ml-1 font-medium italic">
-                        ({product.reviews} reviews)
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl lg:text-3xl font-black mb-3 group-hover:text-primary transition-colors italic">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm lg:text-base text-white/60 mb-8 flex-1 leading-relaxed">
-                      {product.description}
-                    </p>
-
-                    <div className="space-y-3 mb-8">
-                      {product.features.map((f, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-2 text-xs font-bold text-white/80"
-                        >
-                          <CheckIcon />
-                          {f}
+                  {/* Content Part (Left) */}
+                  <div className="flex-1 p-6 lg:p-10 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-3">
+                        <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">
+                          {product.category}
+                        </span>
+                        <div className="flex items-center gap-1 px-2">
+                          <Star className="w-3.5 h-3.5 text-primary fill-primary" />
+                          <span className="text-xs font-bold text-zinc-300">
+                            {product.rating}
+                          </span>
+                          <span className="text-zinc-500 text-[10px] font-medium">
+                            ({product.reviews})
+                          </span>
                         </div>
-                      ))}
+                      </div>
+
+                      <h3 className="text-2xl lg:text-3xl font-bold mb-3 tracking-tight text-white transition-colors">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm lg:text-base text-zinc-400 mb-6 leading-relaxed">
+                        {product.description}
+                      </p>
+
+                      <div className="space-y-2.5 mb-8">
+                        {product.features.map((f, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center gap-2.5 text-xs font-semibold text-zinc-300"
+                          >
+                            <CheckIcon />
+                            {f}
+                          </div>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="flex items-center justify-between pt-6 border-t border-white/10">
+                    <div className="flex items-end justify-between pt-6 border-t border-white/5">
                       <div>
-                        <p className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-1">
-                          Price
+                        <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                          Base Price
                         </p>
-                        <p className="text-2xl font-black text-white">
+                        <p className="text-2xl lg:text-3xl font-bold text-white tracking-tight">
                           {product.price}
                         </p>
                       </div>
                       <Link
                         href={`/shop/${product.id}`}
-                        className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-black transition-all hover:scale-110 active:scale-95 shadow-[0_0_15px_rgba(190,238,2,0.2)]"
+                        className="group flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-white text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
                       >
-                        <ArrowRight className="w-6 h-6" />
+                        <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-0.5 transition-transform" />
                       </Link>
                     </div>
+                  </div>
+
+                  {/* Image Part (Right) */}
+                  <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto overflow-hidden border-b sm:border-b-0 sm:border-l border-white/5 bg-zinc-900/50">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#09090B] via-transparent to-transparent opacity-60 hidden sm:block pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-transparent opacity-60 sm:hidden pointer-events-none" />
                   </div>
                 </motion.div>
               ))}

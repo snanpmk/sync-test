@@ -126,133 +126,136 @@ export default function ProductDetailPage({
             </motion.div>
 
             {/* Right: Product Details */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-10"
-            >
-              <div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex items-center gap-2 mb-4"
-                >
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star
-                        key={s}
-                        className="w-4 h-4 text-primary fill-primary"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-bold text-white/60">
-                    4.9 (124 reviews)
-                  </span>
-                </motion.div>
-
-                <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 tracking-tight italic">
-                  {product.name}
-                </h1>
-
-                <p className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">
-                  {product.price}
-                </p>
-
-                <p className="text-base sm:text-xl text-white/60 leading-relaxed max-w-xl">
-                  {product.description}
-                </p>
-              </div>
-
-              {/* Core Feature Badges */}
+            <div className="flex flex-col relative h-full">
               <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  visible: { transition: { staggerChildren: 0.1 } },
-                }}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="space-y-10 flex-1"
               >
-                {[
-                  { label: 'Instant Connect', icon: Smartphone },
-                  { label: 'Modern NFC', icon: Zap },
-                  { label: 'Secure Data', icon: Shield },
-                  { label: 'Works Globally', icon: Globe },
-                ].map((item, i) => (
+                <div>
                   <motion.div
-                    key={i}
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    whileHover={{
-                      scale: 1.02,
-                      backgroundColor: 'rgba(255,255,255,0.08)',
-                    }}
-                    className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex items-center gap-2 mb-4"
                   >
-                    <item.icon className="w-5 h-5 text-primary" />
-                    <span className="text-xs sm:text-sm font-bold text-white/80">
-                      {item.label}
+                    <div className="flex">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star
+                          key={s}
+                          className="w-4 h-4 text-primary fill-primary"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm font-bold text-white/60">
+                      4.9 (124 reviews)
                     </span>
                   </motion.div>
-                ))}
-              </motion.div>
 
-              {/* Specs Table */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="p-6 sm:p-8 rounded-3xl border border-white/5 bg-white/2"
-              >
-                <h3 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-white uppercase tracking-widest border-b border-white/10 pb-4">
-                  Standard Specs
-                </h3>
-                <div className="space-y-3 sm:space-y-4">
-                  {product.specs.map((spec: any, i: number) => (
-                    <div
-                      key={i}
-                      className="flex justify-between items-center text-xs sm:text-sm"
-                    >
-                      <span className="text-white/40">{spec.label}</span>
-                      <span className="text-white font-bold">{spec.value}</span>
-                    </div>
-                  ))}
+                  <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 tracking-tight italic">
+                    {product.name}
+                  </h1>
+
+                  <p className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">
+                    {product.price}
+                  </p>
+
+                  <p className="text-base sm:text-xl text-white/60 leading-relaxed max-w-xl">
+                    {product.description}
+                  </p>
                 </div>
+
+                {/* Core Feature Badges */}
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    visible: { transition: { staggerChildren: 0.1 } },
+                  }}
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+                >
+                  {[
+                    { label: 'Instant Connect', icon: Smartphone },
+                    { label: 'Modern NFC', icon: Zap },
+                    { label: 'Secure Data', icon: Shield },
+                    { label: 'Works Globally', icon: Globe },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      variants={{
+                        hidden: { opacity: 0, y: 10 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                      whileHover={{
+                        scale: 1.02,
+                        backgroundColor: 'rgba(255,255,255,0.08)',
+                      }}
+                      className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors"
+                    >
+                      <item.icon className="w-5 h-5 text-primary" />
+                      <span className="text-xs sm:text-sm font-bold text-white/80">
+                        {item.label}
+                      </span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                {/* Specs Table */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 sm:p-8 rounded-3xl border border-white/5 bg-white/2"
+                >
+                  <h3 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-white uppercase tracking-widest border-b border-white/10 pb-4">
+                    Standard Specs
+                  </h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    {product.specs.map((spec: any, i: number) => (
+                      <div
+                        key={i}
+                        className="flex justify-between items-center text-xs sm:text-sm"
+                      >
+                        <span className="text-white/40">{spec.label}</span>
+                        <span className="text-white font-bold">{spec.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+
               </motion.div>
 
-              {/* CTA Area */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-8 sm:pt-10 border-t border-white/10">
+              {/* CTA Area (Sticky) */}
+              <div className="fixed sm:sticky bottom-0 sm:bottom-6 left-0 right-0 z-50 flex flex-row gap-3 sm:gap-4 p-4 sm:p-5 bg-black/90 sm:bg-[#09090B]/80 backdrop-blur-xl border-t sm:border border-white/10 sm:rounded-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.5)] mt-8 w-full lg:max-w-3xl mx-auto">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:flex-1 group flex items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-black text-black transition-all shadow-[0_0_20px_rgba(190,238,2,0.2)]"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white/5 sm:bg-white/[0.05] px-4 py-3.5 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-white hover:bg-white/10 transition-all border border-white/5"
                 >
-                  <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
-                  Add to Cart
+                  <ShoppingCart className="w-5 h-5 sm:w-5 sm:h-5 text-zinc-300" />
+                  <span className="hidden sm:inline">Add to Cart</span>
                 </motion.button>
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:flex-1"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-[2] sm:flex-[2]"
                 >
                   <Link
-                    href="/checkout"
-                    className="flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-black text-white hover:bg-white/10 transition-all w-full h-full"
+                    href={`/order-success?type=${id.includes('stand') ? 'stand' : 'card'}`}
+                    className="flex items-center justify-center rounded-xl sm:rounded-2xl flex-col bg-primary px-4 py-2 text-base sm:text-lg font-bold text-black hover:brightness-110 transition-all w-full h-full shadow-[0_4px_20px_rgba(190,238,2,0.15)] leading-tight"
                   >
-                    Buy Now
+                    <span>Buy Now</span>
                   </Link>
                 </motion.div>
               </div>
 
               {/* Shipping Note */}
-              <p className="text-center text-[10px] sm:text-xs text-white/40 font-medium sm:whitespace-nowrap">
+              <p className="text-center text-[10px] sm:text-xs text-zinc-500 font-medium pt-6 pb-2 sm:pb-0">
                 Free express shipping on all orders over ₹1,999. • Ships within
                 24 hours.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
