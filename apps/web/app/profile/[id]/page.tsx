@@ -84,7 +84,7 @@ export default function ProfilePage() {
                     >
                         {/* Elegant Outer Ring */}
                         <div className="w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-zinc-600 via-zinc-900 to-[#050505] shadow-2xl relative">
-                            <div className="w-full h-full rounded-full border-[4px] border-[#050505] overflow-hidden bg-zinc-800">
+                            <div className="w-full h-full rounded-full border-[2px] border-[#050505] overflow-hidden bg-zinc-800">
                                 <img
                                     src={profile.profilePic}
                                     alt={profile.name}
