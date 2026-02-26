@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 export const Problem = () => {
   return (
     <section className="py-24 bg-black overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-site px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -51,7 +51,6 @@ export const Problem = () => {
                 'No analytics',
                 'No social media links',
                 'No instant contact save',
-                'No review generation',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 text-white/50">
                   <X className="w-5 h-5 text-red-500/50 shrink-0 mt-0.5" />
@@ -76,7 +75,6 @@ export const Problem = () => {
                 'Update anytime',
                 'Track every interaction',
                 'Add social links & services',
-                'Collect Google reviews',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 text-white">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />

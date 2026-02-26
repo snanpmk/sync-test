@@ -11,7 +11,7 @@ export default function Contact() {
       <Navbar />
 
       <main className="pt-24 lg:pt-32 pb-24 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-site">
           <div className="text-center mb-16 lg:mb-24 pt-12">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

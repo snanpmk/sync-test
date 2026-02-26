@@ -21,7 +21,7 @@ export default function HowItWorks() {
       <main className="pt-24 pb-24 overflow-x-hidden">
         {/* Hero Section */}
         <section className="py-20 lg:py-32 px-6 lg:px-8 text-center bg-linear-to-b from-white/5 to-transparent">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ export default function HowItWorks() {
 
         {/* Fulfillment Flow */}
         <section className="py-20 lg:py-32 px-6 lg:px-8 border-b border-white/5 bg-white/[0.01]">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <h2 className="text-center text-3xl lg:text-5xl font-black mb-16 lg:mb-24 italic uppercase tracking-widest">
               Order to Onboard Journey
             </h2>
@@ -102,7 +102,7 @@ export default function HowItWorks() {
 
         {/* The Card Mechanic */}
         <section className="py-20 lg:py-32 px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
               <div>
                 <motion.div
@@ -183,7 +183,7 @@ export default function HowItWorks() {
 
         {/* The Stand Mechanic */}
         <section className="py-20 lg:py-32 px-6 lg:px-8 bg-white/[0.02] border-y border-white/5">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}

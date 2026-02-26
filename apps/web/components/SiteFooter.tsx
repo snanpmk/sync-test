@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 export const SocialProof = () => {
   return (
     <section className="py-20 lg:py-32 bg-primary/5">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-site px-6 lg:px-8">
         <div className="text-center mb-16 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
@@ -80,7 +80,7 @@ export const SocialProof = () => {
 export const Trust = () => {
   return (
     <section className="py-20 lg:py-32 border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-site px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8">
           {[
             {
@@ -125,7 +125,7 @@ export const Trust = () => {
 export const Footer = () => {
   return (
     <footer className="bg-black border-t border-white/10 pt-20 pb-10">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-site px-6 lg:px-8">
         <div className="grid lg:grid-cols-4 gap-16 mb-20 text-center lg:text-left">
           <div className="lg:col-span-2 flex flex-col items-center lg:items-start">
             <SynConnectLogo className="h-8 w-auto mb-8" />

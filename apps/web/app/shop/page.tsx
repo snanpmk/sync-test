@@ -4,75 +4,134 @@ import { Navbar } from '@/components/Navbar';
 import { Footer, Trust } from '@/components/SiteFooter';
 import { Star, ArrowRight, Search } from 'lucide-react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useShopStore } from '@/store/useShopStore';
 
 const PRODUCTS = [
-  {
-    id: 'card-pro',
-    name: 'SynConnect Pro Card',
-    category: 'Card',
-    description: 'High-grade matte black NFC card for professionals.',
-    price: '₹2,999',
-    image:
-      'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9,
-    reviews: 124,
-    features: ['Matte Finish', 'Unlimited Taps', '24/7 Support'],
-  },
-  {
-    id: 'stand-business',
-    name: 'Review Stand Business',
-    category: 'Stand',
-    description: 'The ultimate Google Review machine for your counter.',
-    price: '₹3,999',
-    image:
-      'https://images.unsplash.com/photo-1556740734-754f1ef9228d?q=80&w=800&auto=format&fit=crop',
-    rating: 5.0,
-    reviews: 86,
-    features: ['Premium Acrylic', 'Google Maps Sync', 'QR Optimized'],
-  },
+  // =========================
+  // DIGITAL BUSINESS CARDS
+  // =========================
   {
     id: 'card-metal',
-    name: 'Silver Edition Card',
+    name: 'Metal NFC Business Card',
     category: 'Card',
-    description: 'Ultra-premium metal NFC card for a lasting impression.',
+    description: 'Ultra-premium stainless steel NFC card for executives and founders.',
     price: '₹5,999',
-    image:
-      'https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=800&auto=format&fit=crop',
-    rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.9,
     reviews: 42,
-    features: ['Stainless Steel', 'Laser Engraved', 'Heavy Duty'],
+    features: ['Stainless Steel', 'Laser Engraving', 'Unlimited Taps', 'Premium Finish'],
   },
   {
-    id: 'stand-mini',
-    name: 'Mini Review Stand',
-    category: 'Stand',
-    description: 'Compact review stand perfect for small service desks.',
-    price: '₹2,499',
-    image:
-      'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=800&auto=format&fit=crop',
+    id: 'card-wooden',
+    name: 'Wooden NFC Business Card',
+    category: 'Card',
+    description: 'Elegant wooden NFC card for a natural and classy impression.',
+    price: '₹3,499',
+    image: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.8,
+    reviews: 36,
+    features: ['Natural Wood Finish', 'Custom Engraving', 'Eco-Friendly', 'NFC Enabled'],
+  },
+  {
+    id: 'card-pvc',
+    name: 'PVC NFC Business Card',
+    category: 'Card',
+    description: 'Durable and affordable NFC card for everyday networking.',
+    price: '₹1,999',
+    image: 'https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=1000&auto=format&fit=crop',
     rating: 4.7,
-    reviews: 58,
-    features: ['Compact Build', 'NFC + QR', 'Clear Acrylic'],
+    reviews: 68,
+    features: ['Lightweight', 'Full Color Print', 'Water Resistant', 'Unlimited Taps'],
+  },
+  {
+    id: 'card-synconnect',
+    name: 'SynConnect Branding Card',
+    category: 'Card',
+    description: 'Budget-friendly NFC card with SynConnect branding.',
+    price: '₹999',
+    image: 'https://images.unsplash.com/photo-1593032465171-8c5f1f1b0c15?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.6,
+    reviews: 104,
+    features: ['Affordable', 'NFC Enabled', 'Quick Setup', 'Best for Teams'],
+  },
+
+  // =========================
+  // REVIEW STANDS
+  // =========================
+  {
+    id: 'stand-wooden',
+    name: 'Wooden NFC Review Stand',
+    category: 'Stand',
+    description: 'Premium wooden counter stand to collect Google reviews easily.',
+    price: '₹2,000',
+    image: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.8,
+    reviews: 55,
+    features: ['Premium Wood Build', 'QR + NFC', 'Custom Logo', 'Counter Display'],
+  },
+  {
+    id: 'stand-all-in-one',
+    name: 'All-in-One Custom Review Stand',
+    category: 'Stand',
+    description: 'Fully customized stand designed to increase Google reviews.',
+    price: '₹1,799',
+    image: 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.9,
+    reviews: 73,
+    features: ['Custom Branding', 'QR Optimized', 'NFC Enabled', 'Counter Display'],
+  },
+  {
+    id: 'stand-google',
+    name: 'Google Review Stand',
+    category: 'Stand',
+    description: 'Modern acrylic Google review stand for reception and billing desks.',
+    price: '₹1,499',
+    image: 'https://images.unsplash.com/photo-1556740734-754f1ef9228d?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.7,
+    reviews: 64,
+    features: ['Premium Acrylic', 'Google Review Direct Link', 'QR + NFC', 'Compact Design'],
+  },
+  {
+    id: 'stand-bundle-card',
+    name: 'Direct Review Bundle Card',
+    category: 'Stand',
+    description: 'Portable review card bundle for easy review collection.',
+    price: '₹700',
+    image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.6,
+    reviews: 88,
+    features: ['Pocket Size', 'NFC + QR', 'Affordable', 'Easy Setup'],
+  },
+  {
+    id: 'stand-sticker',
+    name: 'Direct Review Stickers (NFC + QR)',
+    category: 'Stand',
+    description: 'Stick it anywhere and start collecting reviews instantly.',
+    price: '₹699',
+    image: 'https://images.unsplash.com/photo-1587614295999-6c1c3f1a9f96?q=80&w=1000&auto=format&fit=crop',
+    rating: 4.5,
+    reviews: 97,
+    features: ['Peel & Stick', 'NFC + QR', 'Waterproof', 'Budget Friendly'],
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function ShopPage() {
+  const { selectedCategory, setSelectedCategory, searchQuery, setSearchQuery } = useShopStore();
+
+  const filteredProducts = PRODUCTS.filter((product) => {
+    const matchesCategory =
+      selectedCategory === 'All Products' ||
+      (selectedCategory === 'Cards' && product.category === 'Card') ||
+      (selectedCategory === 'Stands' && product.category === 'Stand');
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+console.log(selectedCategory);
+
+  console.log(filteredProducts);
+  
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-primary selection:text-black">
       <Navbar />
@@ -80,7 +139,7 @@ export default function ShopPage() {
       <main className="pt-24 pb-24">
         {/* Header Section */}
         <section className="relative py-16 lg:py-24 px-6 lg:px-8 border-b border-white/5 bg-white/2">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <motion.h1
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -98,17 +157,22 @@ export default function ShopPage() {
               business growth. Modern networking, built on premium NFC hardware.
             </motion.p>
 
-            {/* <motion.div
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-6 items-center justify-between border-t border-white/10 pt-8"
             >
               <div className="flex items-center gap-2 overflow-x-auto pb-4 sm:pb-0 w-full lg:w-auto scrollbar-hide">
-                {['All Products', 'Cards', 'Stands', 'Bundles'].map((cat) => (
+                {['All Products', 'Cards', 'Stands'].map((cat) => (
                   <button
                     key={cat}
-                    className="shrink-0 px-6 py-2.5 rounded-full border border-white/10 bg-white/5 text-xs lg:text-sm font-bold text-white/60 hover:text-primary hover:border-primary transition-all whitespace-nowrap"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`shrink-0 px-6 py-2.5 rounded-full border ${
+                      selectedCategory === cat
+                        ? 'bg-primary text-black border-primary'
+                        : 'bg-white/5 text-white/60 border-white/10 hover:text-primary hover:border-primary'
+                    } text-xs lg:text-sm font-bold transition-all whitespace-nowrap`}
                   >
                     {cat}
                   </button>
@@ -119,98 +183,83 @@ export default function ShopPage() {
                 <input
                   type="text"
                   placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-full py-3.5 pl-12 pr-6 text-sm focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
-            </motion.div> */}
+            </motion.div>
           </div>
         </section>
 
         {/* Product Grid */}
         <section className="px-6 lg:px-8 py-20">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid lg:grid-cols-2 gap-8 lg:gap-12"
+              layout
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
             >
-              {PRODUCTS.map((product) => (
-                <motion.div
-                  key={product.id}
-                  variants={itemVariants}
-                  whileHover={{ y: -4 }}
-                  className="group relative flex flex-col-reverse sm:flex-row bg-white/[0.02] border border-white/[0.05] rounded-3xl overflow-hidden hover:border-white/10 hover:bg-white/[0.04] transition-all shadow-lg ring-1 ring-white/5"
-                >
-                  {/* Content Part (Left) */}
-                  <div className="flex-1 p-6 lg:p-10 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-1.5 mb-3">
-                        <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary">
-                          {product.category}
-                        </span>
-                        <div className="flex items-center gap-1 px-2">
-                          <Star className="w-3.5 h-3.5 text-primary fill-primary" />
-                          <span className="text-xs font-bold text-zinc-300">
-                            {product.rating}
-                          </span>
-                          <span className="text-zinc-500 text-[10px] font-medium">
-                            ({product.reviews})
-                          </span>
-                        </div>
-                      </div>
-
-                      <h3 className="text-2xl lg:text-3xl font-bold mb-3 tracking-tight text-white transition-colors">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm lg:text-base text-zinc-400 mb-6 leading-relaxed">
-                        {product.description}
-                      </p>
-
-                      <div className="space-y-2.5 mb-8">
-                        {product.features.map((f, i) => (
-                          <div
-                            key={i}
-                            className="flex items-center gap-2.5 text-xs font-semibold text-zinc-300"
-                          >
-                            <CheckIcon />
-                            {f}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-end justify-between pt-6 border-t border-white/5">
-                      <div>
-                        <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-1">
-                          Base Price
-                        </p>
-                        <p className="text-2xl lg:text-3xl font-bold text-white tracking-tight">
-                          {product.price}
-                        </p>
-                      </div>
-                      <Link
-                        href={`/shop/${product.id}`}
-                        className="group flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-white text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
-                      >
-                        <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-0.5 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Image Part (Right) */}
-                  <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto overflow-hidden border-b sm:border-b-0 sm:border-l border-white/5 bg-zinc-900/50">
+              <AnimatePresence mode="popLayout">
+                {filteredProducts.map((product) => (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
+                    key={product.id}
+                    whileHover={{ y: -4 }}
+                    className="group relative flex flex-col bg-white/2 border border-white/10 hover:border-white/20 rounded-2xl overflow-hidden shadow-lg"
+                  >
+                  {/* Image Part (Top) */}
+                  <div className="relative w-full aspect-square sm:aspect-4/3 overflow-hidden bg-black/50">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#09090B] via-transparent to-transparent opacity-60 hidden sm:block pointer-events-none" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-transparent opacity-60 sm:hidden pointer-events-none" />
+                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10">
+                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-primary">
+                          {product.category}
+                        </span>
+                    </div>
+                  </div>
+
+                  {/* Content Part (Bottom) */}
+                  <div className="p-3 sm:p-5 flex flex-col flex-1">
+                    <div className="flex items-center gap-1 mb-1.5 sm:mb-2">
+                       <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary fill-primary" />
+                       <span className="text-[10px] sm:text-xs font-bold text-zinc-300">
+                         {product.rating}
+                       </span>
+                       <span className="text-zinc-500 text-[8px] sm:text-[10px] font-medium hidden sm:inline-block">
+                         ({product.reviews})
+                       </span>
+                    </div>
+                    
+                    <h3 className="text-[13px] sm:text-lg font-bold mb-1 text-white line-clamp-2 leading-tight">
+                      {product.name}
+                    </h3>
+                    <p className="text-[10px] sm:text-xs text-zinc-400 mb-3 sm:mb-4 line-clamp-2 hidden sm:block">
+                      {product.description}
+                    </p>
+
+                    <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-2.5 sm:pt-4">
+                      <div className="flex flex-col">
+                        <span className="text-[8px] sm:text-[10px] font-medium text-zinc-500 uppercase tracking-widest hidden sm:block">Base Price</span>
+                        <span className="text-sm sm:text-lg font-bold text-white tracking-tight">{product.price}</span>
+                      </div>
+                      <Link
+                        href={`/shop/${product.id}`}
+                        className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-black transition-all group-hover:rotate-0 -rotate-45"
+                      >
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform" />
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}
+              </AnimatePresence>
             </motion.div>
           </div>
         </section>

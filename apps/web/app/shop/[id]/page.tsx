@@ -80,7 +80,7 @@ export default function ProductDetailPage({
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          className="mx-auto max-w-7xl px-6 lg:px-8 py-8 flex items-center gap-2 text-sm text-white/40"
+          className="mx-auto max-w-site px-6 lg:px-8 py-8 flex items-center gap-2 text-sm text-white/40"
         >
           <Link href="/shop" className="hover:text-primary transition-colors">
             Shop
@@ -89,7 +89,7 @@ export default function ProductDetailPage({
           <span className="text-white/80 font-medium">{product.name}</span>
         </motion.div>
 
-        <section className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section className="mx-auto max-w-site px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-start">
             {/* Left: Sticky Image Gallery */}
             <motion.div
@@ -260,7 +260,7 @@ export default function ProductDetailPage({
         </section>
 
         <section className="mt-32 border-t border-white/5 px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl pt-24">
+          <div className="mx-auto max-w-site pt-24">
             <h2 className="text-3xl font-bold mb-12 italic">
               Related Features
             </h2>

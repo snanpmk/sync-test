@@ -1,6 +1,6 @@
 'use client';
 
-import { CreditCard, Star, ArrowRight, Sparkles } from 'lucide-react';
+import { CreditCard, Star, ArrowRight, Sparkles, Play } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -29,7 +29,7 @@ export const Hero = () => {
             >
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-xs font-semibold text-zinc-300 uppercase tracking-widest pl-1">
-                The Digital Identity Evolution
+                SMART DIGITAL NETWORKING PLATFORM
               </span>
             </motion.div>
 
@@ -39,10 +39,9 @@ export const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8 leading-[1.05]"
             >
-              Networking, <br className="hidden sm:block" />
+              Connect Smarter, <br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-primary to-zinc-400">
-                Redefined for the Modern Era.
-              </span>
+                Grow Faster in the Digital Era.</span>
             </motion.h1>
 
             <motion.p
@@ -51,8 +50,10 @@ export const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-lg sm:text-xl text-zinc-400 mb-12 leading-relaxed font-medium max-w-xl"
             >
-              Replace outdated paper cards with premium NFC touchpoints. Seamlessly capture leads, drive Google reviews, and manage your professional identity in one tap.
-            </motion.p>
+
+              Smart digital business cards with real-time analytics.
+
+              Google Review stands that turn happy customers into 5-star ratings. </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -72,8 +73,8 @@ export const Hero = () => {
                 href="/how-it-works"
                 className="group flex w-full sm:w-auto items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white active:scale-95 backdrop-blur-sm"
               >
-                <Star className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                View Documentation
+                <Play className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                See It in Action
               </Link>
             </motion.div>
           </div>

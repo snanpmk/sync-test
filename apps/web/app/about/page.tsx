@@ -12,7 +12,7 @@ export default function About() {
 
       <main className="pt-24 pb-24">
         <section className="py-20 lg:py-32 px-6 lg:px-8 bg-linear-to-b from-primary/5 to-transparent">
-          <div className="mx-auto max-w-7xl text-center">
+          <div className="mx-auto max-w-site text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function About() {
         </section>
 
         <section className="py-20 lg:py-32 px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -101,7 +101,7 @@ export default function About() {
         </section>
 
         <section className="py-20 lg:py-48 px-6 lg:px-8 bg-white/[0.02] border-y border-white/5">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-site">
             <motion.h2
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
