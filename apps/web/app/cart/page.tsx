@@ -6,22 +6,20 @@ import { Footer } from '@/components/SiteFooter';
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 
-const CART_ITEMS = [
-  {
-    id: 'card-pro',
-    name: 'SynConnect Pro Card',
-    price: 2999,
-    quantity: 1,
-    image:
-      'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1200',
-  },
-];
+import { useCartStore } from '@/store/useCartStore';
+import { useEffect, useState } from 'react';
 
 export default function CartPage() {
-  const subtotal = CART_ITEMS.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const { items, removeItem, updateQuantity, getTotalPrice } = useCartStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const subtotal = getTotalPrice();
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-primary selection:text-black">
@@ -34,15 +32,15 @@ export default function CartPage() {
               YOUR CART
             </h1>
             <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] sm:text-xs">
-              {CART_ITEMS.length} Items Selected
+              {items.length} Items Selected
             </p>
           </header>
 
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             {/* Left: Cart Items */}
             <div className="lg:col-span-8 space-y-6">
-              {CART_ITEMS.length > 0 ? (
-                CART_ITEMS.map((item) => (
+              {items.length > 0 ? (
+                items.map((item) => (
                   <motion.div
                     key={item.id}
                     layout
@@ -52,7 +50,7 @@ export default function CartPage() {
                   >
                     <div className="h-32 w-32 shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-black">
                       <img
-                        src={item.image}
+                        src={item.images[0]}
                         alt={item.name}
                         className="w-full h-full object-cover"
                       />
@@ -68,17 +66,26 @@ export default function CartPage() {
 
                       <div className="flex items-center justify-center sm:justify-start gap-6">
                         <div className="flex items-center gap-4 bg-black/40 px-4 py-2 rounded-full border border-white/10">
-                          <button className="hover:text-primary transition-colors">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="hover:text-primary transition-colors"
+                          >
                             <Minus className="w-4 h-4" />
                           </button>
                           <span className="font-bold w-4 text-center">
                             {item.quantity}
                           </span>
-                          <button className="hover:text-primary transition-colors">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="hover:text-primary transition-colors"
+                          >
                             <Plus className="w-4 h-4" />
                           </button>
                         </div>
-                        <button className="p-3 rounded-full hover:bg-white/5 text-white/40 hover:text-red-500 transition-all">
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          className="p-3 rounded-full hover:bg-white/5 text-white/40 hover:text-red-500 transition-all"
+                        >
                           <Trash2 className="w-5 h-5" />
                         </button>
                       </div>

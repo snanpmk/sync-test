@@ -12,56 +12,12 @@ import {
   Shield,
   Globe,
 } from 'lucide-react';
+import { useCartStore } from '@/store/useCartStore';
+import { products } from '@synconnect/schema';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { use } from 'react';
 import { motion } from 'framer-motion';
-
-const PRODUCT_DATA: Record<string, any> = {
-  'card-pro': {
-    name: 'SynConnect Pro Card',
-    price: '₹2,999',
-    description:
-      'The professional standard for digital networking. Designed for those who demand excellence in every interaction. Our Pro Card features a dual-layer matte finish that feels as premium as it looks.',
-    images: [
-      'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1200',
-    ],
-    features: [
-      'Instant Contact Sharing',
-      'Dynamic Profile Link',
-      'Matte Premium Finish',
-      'NTAG213 High-Speed Chip',
-      'No App Required',
-    ],
-    specs: [
-      { label: 'Compatibility', value: 'iPhone & Android' },
-      { label: 'NFC Range', value: 'Up to 4cm' },
-      { label: 'Security', value: 'NFC Encryption Ready' },
-      { label: 'Material', value: 'Premium Recycled PVC' },
-    ],
-  },
-  'stand-business': {
-    name: 'Review Stand Business',
-    price: '₹3,999',
-    description:
-      'Automate your customer feedback loop. The SynConnect Stand is engineered to bridge the gap between physical experience and digital reputation. Place it at your point of sale and watch your Google ratings skyrocket.',
-    images: [
-      'https://images.unsplash.com/photo-1556740734-754f1ef9228d?q=80&w=1200',
-    ],
-    features: [
-      'Google Review Optimized',
-      'Custom Branding Area',
-      'Anti-Scratch Acrylic',
-      'Non-Slip Base',
-      'Real-time Analytics',
-    ],
-    specs: [
-      { label: 'Base', value: 'Brushed Aluminum' },
-      { label: 'Height', value: '15cm / 6 inches' },
-      { label: 'Sync', value: 'Direct URL / QR' },
-      { label: 'Weather', value: 'UV Resistant' },
-    ],
-  },
-};
 
 export default function ProductDetailPage({
   params,
@@ -69,7 +25,20 @@ export default function ProductDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const product = PRODUCT_DATA[id] || PRODUCT_DATA['card-pro'];
+  const router = useRouter();
+  const addItem = useCartStore((state) => state.addItem);
+  
+  // Find product from shared schema products
+  const product = products.find((p) => p.id === id) || products[0];
+
+  const handleAddToCart = () => {
+    addItem(product);
+  };
+
+  const handleBuyNow = () => {
+    addItem(product);
+    router.push('/checkout');
+  };
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-primary selection:text-black">
@@ -144,12 +113,12 @@ export default function ProductDetailPage({
                       {[1, 2, 3, 4, 5].map((s) => (
                         <Star
                           key={s}
-                          className="w-4 h-4 text-primary fill-primary"
+                          className={`w-4 h-4 ${s <= Math.round(product.rating || 5) ? 'text-primary fill-primary' : 'text-white/20'}`}
                         />
                       ))}
                     </div>
                     <span className="text-sm font-bold text-white/60">
-                      4.9 (124 reviews)
+                      {product.rating || 5} ({product.reviews || 0} reviews)
                     </span>
                   </motion.div>
 
@@ -158,7 +127,7 @@ export default function ProductDetailPage({
                   </h1>
 
                   <p className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">
-                    {product.price}
+                    ₹{product.price.toLocaleString()}
                   </p>
 
                   <p className="text-base sm:text-xl text-white/60 leading-relaxed max-w-xl">
@@ -222,6 +191,9 @@ export default function ProductDetailPage({
                       </div>
                     ))}
                   </div>
+                  <p className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8 mt-8">
+                    ₹{product.price.toLocaleString()}
+                  </p>
                 </motion.div>
 
               </motion.div>
@@ -231,7 +203,8 @@ export default function ProductDetailPage({
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white/5 sm:bg-white/[0.05] px-4 py-3.5 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-white hover:bg-white/10 transition-all border border-white/5"
+                  onClick={handleAddToCart}
+                  className="flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white/5 sm:bg-white/5 px-4 py-3.5 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-white hover:bg-white/10 transition-all border border-white/5"
                 >
                   <ShoppingCart className="w-5 h-5 sm:w-5 sm:h-5 text-zinc-300" />
                   <span className="hidden sm:inline">Add to Cart</span>
@@ -239,14 +212,14 @@ export default function ProductDetailPage({
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex-[2] sm:flex-[2]"
+                  className="flex-2 sm:flex-2"
                 >
-                  <Link
-                    href={`/order-success?type=${id.includes('stand') ? 'stand' : 'card'}`}
+                  <button
+                    onClick={handleBuyNow}
                     className="flex items-center justify-center rounded-xl sm:rounded-2xl flex-col bg-primary px-4 py-2 text-base sm:text-lg font-bold text-black hover:brightness-110 transition-all w-full h-full shadow-[0_4px_20px_rgba(190,238,2,0.15)] leading-tight"
                   >
                     <span>Buy Now</span>
-                  </Link>
+                  </button>
                 </motion.div>
               </div>
 

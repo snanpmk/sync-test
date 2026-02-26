@@ -19,48 +19,9 @@ export default function HowItWorks() {
       <Navbar />
 
       <main className="pt-24 pb-24 overflow-x-hidden">
-        {/* Hero Section */}
-        <section className="py-20 lg:py-32 px-6 lg:px-8 text-center bg-linear-to-b from-white/5 to-transparent">
-          <div className="mx-auto max-w-site">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-black mb-8 leading-tight italic"
-            >
-              One Tap to <span className="text-primary">Connect.</span> <br />
-              One Tap to <span className="text-primary">Grow.</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg lg:text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed mb-16"
-            >
-              SynConnect uses high-frequency NFC (Near Field Communication) to
-              bridge the gap between a physical presence and your digital world.
-              No apps, no friction.
-            </motion.p>
-
-            {/* Product Introduction Video */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="relative mx-auto max-w-4xl aspect-video rounded-2xl lg:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-white/5"
-            >
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="SynConnect Product Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </motion.div>
-          </div>
-        </section>
-
+      
         {/* Fulfillment Flow */}
-        <section className="py-20 lg:py-32 px-6 lg:px-8 border-b border-white/5 bg-white/[0.01]">
+        <section className="py-20 lg:py-32 px-6 lg:px-8 border-b border-white/5 bg-white/1">
           <div className="mx-auto max-w-site">
             <h2 className="text-center text-3xl lg:text-5xl font-black mb-16 lg:mb-24 italic uppercase tracking-widest">
               Order to Onboard Journey
@@ -173,7 +134,7 @@ export default function HowItWorks() {
                 <img
                   src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=1200"
                   alt="NFC Card Interaction"
-                  className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                  className="w-full h-full object-cover  opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-linear-to-tr from-black/60 via-transparent to-transparent" />
               </motion.div>
@@ -182,7 +143,7 @@ export default function HowItWorks() {
         </section>
 
         {/* The Stand Mechanic */}
-        <section className="py-20 lg:py-32 px-6 lg:px-8 bg-white/[0.02] border-y border-white/5">
+        <section className="py-20 lg:py-32 px-6 lg:px-8 bg-white/2 border-y border-white/5">
           <div className="mx-auto max-w-site">
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
               <motion.div
@@ -192,9 +153,9 @@ export default function HowItWorks() {
                 className="order-2 lg:order-1 relative aspect-video lg:aspect-4/3 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1556740734-754f1ef9228d?q=80&w=1200"
+                  src="https://images.unsplash.com/photo-1702468292651-fd16394e4ddd?q=80&w=1200"
                   alt="NFC Stand Interaction"
-                  className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                  className="w-full h-full object-cover  opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-linear-to-tl from-black/60 via-transparent to-transparent" />
               </motion.div>

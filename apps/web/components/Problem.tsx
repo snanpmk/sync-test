@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 export const Problem = () => {
   return (
     <section className="py-24 bg-black overflow-hidden">
-      <div className="mx-auto max-w-site px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

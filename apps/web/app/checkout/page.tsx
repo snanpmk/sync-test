@@ -1,23 +1,105 @@
 'use client';
 
-import { useState } from 'react';
+import { useCartStore } from '@/store/useCartStore';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { createOrderSchema } from '@synconnect/schema';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/SiteFooter';
-import { Lock, ArrowRight, ShieldCheck, CreditCard, Truck } from 'lucide-react';
+import { Lock, ArrowRight, ShieldCheck, CreditCard, Truck, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 
-const PRODUCT = {
-  name: 'SynConnect Pro Card',
-  price: 2999,
-  image:
-    'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1200',
-};
-
 export default function CheckoutPage() {
-  const [step, setStep] = useState(1);
-  const shipping = 0;
-  const total = PRODUCT.price + shipping;
+  const { items, getTotalPrice, clearCart } = useCartStore();
+  const router = useRouter();
+
+  const [mounted, setMounted] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [otpCode, setOtpCode] = useState(['', '', '', '']);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(createOrderSchema),
+    defaultValues: {
+      userId: 'mock-user-id',
+      items: items.map(item => ({
+        productId: item.id,
+        productName: item.name,
+        quantity: item.quantity,
+        price: item.price
+      })),
+      totalAmount: getTotalPrice(),
+      status: 'pending' as const,
+      purchasePath: 'cart' as const,
+      shippingAddress: {
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        city: '',
+        state: '',
+        pinCode: '',
+      }
+    }
+  });
+
+  const emailValue = watch('shippingAddress.email');
+
+  if (!mounted) return null;
+
+  const total = getTotalPrice();
+
+  const handleSendOtp = () => {
+    if (!emailValue || errors.shippingAddress?.email) return;
+    setIsVerifying(true);
+    // Mock OTP Send
+    setTimeout(() => {
+      setOtpSent(true);
+      setIsVerifying(false);
+    }, 1500);
+  };
+
+  const handleOtpInput = (index: number, value: string) => {
+    if (value.length > 1) value = value[0];
+    const newOtp = [...otpCode];
+    newOtp[index] = value;
+    setOtpCode(newOtp);
+
+    // Auto verify if complete
+    if (newOtp.join('').length === 4) {
+      if (newOtp.join('') === '1234') { // Mock verification
+        setIsVerified(true);
+      }
+    }
+
+    // Auto focus next
+    if (value && index < 3) {
+      const nextInput = document.getElementById(`otp-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const onSubmit = (data: any) => {
+    if (!isVerified) return;
+    console.log('Order submitted:', data);
+    setTimeout(() => {
+      clearCart();
+      router.push('/order-success');
+    }, 1000);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-primary selection:text-black">
@@ -25,83 +107,153 @@ export default function CheckoutPage() {
 
       <main className="pt-24 lg:pt-32 pb-24 px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <header className="mb-12">
-            <h1 className="text-4xl lg:text-6xl font-black italic mb-4 tracking-tight">
-              SECURE CHECKOUT
+          <header className="mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-7xl font-black italic mb-2 sm:mb-4 tracking-tight">
+              SECURE <span className="text-primary">CHECKOUT</span>
             </h1>
             <div className="flex items-center gap-2 text-white/40 font-bold uppercase tracking-widest text-[10px] sm:text-xs">
               <Lock className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
-              <span>SSL Encrypted Connection</span>
+              <span>SSL 256-BIT ENCRYPTED</span>
             </div>
           </header>
 
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Left: Forms */}
-            <div className="lg:col-span-7 space-y-8">
+            <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-7 space-y-10">
+              {/* Identity & Verification Section */}
+              <section className="p-6 sm:p-10 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl relative overflow-hidden">
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                    <ShieldCheck className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-black italic">Identity Verification</h2>
+                    <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Secure Your Order</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="relative group">
+                    <input
+                      {...register('shippingAddress.email')}
+                      type="email"
+                      disabled={otpSent}
+                      placeholder="Email Address"
+                      className={`w-full bg-white/5 border ${errors.shippingAddress?.email ? 'border-red-500' : 'border-white/10'} rounded-2xl py-5 pl-5 sm:py-6 sm:pl-6 pr-[140px] sm:pr-[160px] focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold text-base sm:text-lg disabled:opacity-50`}
+                    />
+                    {!otpSent && (
+                      <button
+                        type="button"
+                        onClick={handleSendOtp}
+                        disabled={!emailValue || !!errors.shippingAddress?.email || isVerifying}
+                        className="absolute right-3 top-3 bottom-3 px-6 rounded-xl bg-primary text-black font-black text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all disabled:opacity-0 disabled:pointer-events-none"
+                      >
+                        {isVerifying ? 'Sending...' : 'Verify Email'}
+                      </button>
+                    )}
+                    {isVerified && (
+                      <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2 text-primary font-black italic text-xs uppercase">
+                        <CheckCircle2 className="w-5 h-5" />
+                        Verified
+                      </div>
+                    )}
+                  </div>
+
+                  {otpSent && !isVerified && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-6 rounded-2xl bg-primary/5 border border-primary/20 space-y-6"
+                    >
+                      <div className="flex justify-between items-center">
+                        <p className="text-sm font-bold text-primary/80 italic">Enter the 4-digit code sent to your email (Mock: 1234)</p>
+                        <button onClick={() => setOtpSent(false)} className="text-[10px] font-black uppercase text-white/40 hover:text-white transition-colors">Change Email</button>
+                      </div>
+                      <div className="flex gap-2 sm:gap-4 justify-center">
+                        {otpCode.map((digit, i) => (
+                          <input
+                            key={i}
+                            id={`otp-${i}`}
+                            type="text"
+                            maxLength={1}
+                            value={digit}
+                            onChange={(e) => handleOtpInput(i, e.target.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Backspace' && !digit && i > 0) {
+                                document.getElementById(`otp-${i - 1}`)?.focus();
+                              }
+                            }}
+                            className="w-12 h-16 sm:w-16 sm:h-20 bg-white/5 border border-white/10 rounded-2xl text-center text-2xl sm:text-3xl font-black text-primary focus:border-primary focus:bg-primary/5 outline-none transition-all"
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              </section>
+
               {/* Shipping Section */}
-              <section className="p-8 lg:p-10 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
-                    <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <section className={`p-6 sm:p-10 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl transition-all ${!isVerified ? 'opacity-40 grayscale pointer-events-none' : ''}`}>
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="h-12 w-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
+                    <Truck className="w-6 h-6 text-white/40" />
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-black italic">
-                    Shipping Information
-                  </h2>
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-black italic text-white/80">Shipping Destination</h2>
+                    <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Where should we ship?</p>
+                  </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-4 sm:gap-6">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <input
-                      type="text"
-                      placeholder="First Name"
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 focus:border-primary outline-none transition-all placeholder:text-white/20 font-medium"
+                      {...register('shippingAddress.name')}
+                      placeholder="Recipient Full Name"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold"
                     />
                     <input
-                      type="text"
-                      placeholder="Last Name"
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 focus:border-primary outline-none transition-all placeholder:text-white/20 font-medium"
+                      {...register('shippingAddress.phone')}
+                      placeholder="Contact Number"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold"
                     />
                   </div>
                   <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 focus:border-primary outline-none transition-all placeholder:text-white/20 font-medium"
+                    {...register('shippingAddress.address')}
+                    placeholder="Residential / Office Address"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold"
                   />
-                  <input
-                    type="text"
-                    placeholder="Street Address"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 focus:border-primary outline-none transition-all placeholder:text-white/20 font-medium"
-                  />
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
                     <input
-                      type="text"
+                      {...register('shippingAddress.city')}
                       placeholder="City"
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 focus:border-primary outline-none transition-all placeholder:text-white/20 font-medium"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold"
                     />
                     <input
-                      type="text"
-                      placeholder="Postal Code"
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 focus:border-primary outline-none transition-all placeholder:text-white/20 font-medium"
+                      {...register('shippingAddress.state')}
+                      placeholder="State"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold"
+                    />
+                    <input
+                      {...register('shippingAddress.pinCode')}
+                      placeholder="PIN Code"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 focus:border-primary outline-none transition-all placeholder:text-white/20 font-bold col-span-2 sm:col-span-1"
                     />
                   </div>
                 </div>
               </section>
 
-              {/* Payment Section (Mock) */}
-              <section className="p-8 lg:p-10 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl opacity-50 grayscale pointer-events-none">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 text-white/40">
-                    <CreditCard className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-black italic">
-                    Payment Method
-                  </h2>
-                </div>
-                <p className="text-sm font-medium italic text-white/40">
-                  Enter shipping info to unlock payment.
-                </p>
-              </section>
-            </div>
+              <button
+                type="submit"
+                disabled={!isVerified}
+                className="group w-full flex flex-col items-center justify-center gap-1 bg-primary text-black py-8 rounded-[2rem] font-black text-2xl italic hover:scale-[1.02] active:scale-95 transition-all shadow-[0_20px_50px_rgba(190,238,2,0.2)] disabled:opacity-20 disabled:grayscale disabled:scale-100 disabled:pointer-events-none"
+              >
+                <span className="flex items-center gap-2 sm:gap-3 px-4 text-center">
+                  <span className="text-xl sm:text-2xl">COMPLETE SECURE ORDER</span>
+                  <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform duration-500 shrink-0" />
+                </span>
+                <span className="text-[10px] uppercase font-black tracking-widest opacity-60">Instant Confirmation via Email</span>
+              </button>
+            </form>
 
             {/* Right: Order Summary */}
             <div className="lg:col-span-5 lg:sticky lg:top-32">
@@ -110,29 +262,33 @@ export default function CheckoutPage() {
                   Order Summary
                 </h3>
 
-                <div className="flex gap-6">
-                  <div className="h-24 w-24 rounded-2xl overflow-hidden border border-white/10 bg-black">
-                    <img
-                      src={PRODUCT.image}
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-black italic text-lg">{PRODUCT.name}</p>
-                    <p className="text-primary font-bold">
-                      ₹{PRODUCT.price.toLocaleString()}
-                    </p>
-                    <p className="text-xs text-white/40 font-medium mt-1 italic">
-                      Qty: 1
-                    </p>
-                  </div>
+                <div className="max-h-60 overflow-y-auto space-y-6 pr-2 custom-scrollbar">
+                  {items.map((item) => (
+                    <div key={item.id} className="flex gap-4 sm:gap-6">
+                      <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden border border-white/10 bg-black shrink-0">
+                        <img
+                          src={item.images[0]}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-black italic text-base">{item.name}</p>
+                        <p className="text-primary font-bold text-sm">
+                          ₹{item.price.toLocaleString()}
+                        </p>
+                        <p className="text-[10px] text-white/40 font-medium mt-1 italic">
+                          Qty: {item.quantity}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="space-y-4 pt-6 border-t border-white/10">
                   <div className="flex justify-between items-center text-sm font-medium">
                     <span className="text-white/40">Subtotal</span>
-                    <span>₹{PRODUCT.price.toLocaleString()}</span>
+                    <span>₹{total.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center text-sm font-medium">
                     <span className="text-white/40">Shipping</span>
@@ -143,14 +299,6 @@ export default function CheckoutPage() {
                     <span>₹{total.toLocaleString()}</span>
                   </div>
                 </div>
-
-                <Link
-                  href="/order-success"
-                  className="group w-full flex items-center justify-center gap-3 bg-primary text-black py-6 rounded-full font-black text-xl italic hover:scale-105 transition-all shadow-[0_0_40px_rgba(190,238,2,0.3)]"
-                >
-                  Complete Order
-                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                </Link>
 
                 <div className="flex items-center justify-center gap-3 pt-4">
                   <ShieldCheck className="w-4 h-4 text-primary" />

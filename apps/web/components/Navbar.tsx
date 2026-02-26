@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SynConnectLogo } from '@synconnect/ui';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingCart } from 'lucide-react';
+import { useCartStore } from '@/store/useCartStore';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -17,6 +18,13 @@ const NAV_LINKS = [
 export const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const count = useCartStore((state) => state.items.reduce((acc, item) => acc + item.quantity, 0));
+  const cartCount = mounted ? count : 0;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl">
@@ -62,9 +70,11 @@ export const Navbar = () => {
             className="relative p-2 text-white/70 hover:text-white transition-colors"
           >
             <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span className="absolute top-0.5 right-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4 bg-primary text-black text-[8px] sm:text-[10px] font-black rounded-full flex items-center justify-center">
-              1
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute top-0.5 right-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4 bg-primary text-black text-[8px] sm:text-[10px] font-black rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Link>
 
           <Link

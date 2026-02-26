@@ -68,7 +68,7 @@ export default function ProfilePage() {
                         className="w-full h-full object-cover filter"
                     />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/60 to-[#050505] z-10"></div>
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#050505]/60 to-[#050505] z-10"></div>
             </div>
 
             {/* Profile Info Container */}
@@ -83,8 +83,8 @@ export default function ProfilePage() {
                         className="relative"
                     >
                         {/* Elegant Outer Ring */}
-                        <div className="w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-zinc-600 via-zinc-900 to-[#050505] shadow-2xl relative">
-                            <div className="w-full h-full rounded-full border-[2px] border-[#050505] overflow-hidden bg-zinc-800">
+                        <div className="w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full p-1 bg-linear-to-br from-zinc-600 via-zinc-900 to-[#050505] shadow-2xl relative">
+                            <div className="w-full h-full rounded-full border-2 border-[#050505] overflow-hidden bg-zinc-800">
                                 <img
                                     src={profile.profilePic}
                                     alt={profile.name}
@@ -182,7 +182,7 @@ export default function ProfilePage() {
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                         {profile.services.map((service, idx) => (
-                            <div key={idx} className="bg-zinc-900/20 border border-zinc-800/50 p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] hover:border-zinc-600 transition-all duration-500 group backdrop-blur-md relative overflow-hidden">
+                            <div key={idx} className="bg-zinc-900/20 border border-zinc-800/50 p-5 sm:p-8 rounded-3xl sm:rounded-4xl hover:border-zinc-600 transition-all duration-500 group backdrop-blur-md relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-40 h-40 bg-zinc-800/10 rounded-bl-full -z-10 group-hover:bg-zinc-800/30 transition-colors duration-500"></div>
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#050505] flex items-center justify-center mb-5 sm:mb-6 border border-zinc-800/80 group-hover:border-zinc-600 transition-all duration-500">
                                     <Briefcase size={20} className="text-zinc-400 group-hover:text-white transition-colors duration-500" />
@@ -213,7 +213,7 @@ export default function ProfilePage() {
                                     className="flex items-center justify-between p-4 sm:p-5 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl hover:bg-zinc-800 hover:border-zinc-500 transition-all duration-300 group backdrop-blur-md active:scale-[0.98]"
                                 >
                                     <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-                                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-zinc-950 flex flex-shrink-0 items-center justify-center border border-zinc-800/80 group-hover:border-primary/50 transition-colors">
+                                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-zinc-950 flex shrink-0 items-center justify-center border border-zinc-800/80 group-hover:border-primary/50 transition-colors">
                                             <FileText size={16} className="text-zinc-400 group-hover:text-primary transition-colors sm:w-[18px] sm:h-[18px]" />
                                         </div>
                                         <div className="overflow-hidden">
@@ -221,7 +221,7 @@ export default function ProfilePage() {
                                             <p className="text-[11px] sm:text-sm text-zinc-500 mt-0.5">{resource.type.toUpperCase()} • {resource.size}</p>
                                         </div>
                                     </div>
-                                    <div className="p-2 sm:p-3 rounded-full bg-zinc-950 border border-zinc-800/80 group-hover:bg-primary/10 group-hover:border-primary/30 transition-all flex-shrink-0">
+                                    <div className="p-2 sm:p-3 rounded-full bg-zinc-950 border border-zinc-800/80 group-hover:bg-primary/10 group-hover:border-primary/30 transition-all shrink-0">
                                         {resource.type === 'pdf' ? (
                                             <Download size={14} className="text-zinc-400 group-hover:text-primary transition-colors sm:w-4 sm:h-4" />
                                         ) : (
@@ -231,7 +231,7 @@ export default function ProfilePage() {
                                 </a>
                             ))}
                         </div>
-                        <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800/80 to-transparent mt-10 sm:mt-14" />
+                        <div className="h-px w-full bg-linear-to-r from-transparent via-zinc-800/80 to-transparent mt-10 sm:mt-14" />
                     </div>
                 )}
 
@@ -248,12 +248,12 @@ export default function ProfilePage() {
                                 key={idx}
                                 className={`rounded-2xl sm:rounded-3xl overflow-hidden bg-[#050505] border border-zinc-800/40 group relative ${idx === 0 ? 'col-span-2 row-span-2' : ''}`}
                             >
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
+                                <div className="absolute inset-0 bg-linear-to-t from-[#050505]/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
                                 <img
                                     src={img}
                                     alt={`Portfolio piece ${idx + 1}`}
                                     className={`w-full h-full object-cover transition-all duration-700 ease-out 
-                    ${idx !== 0 ? 'grayscale-[60%] group-hover:grayscale-0 group-hover:scale-110' : 'group-hover:scale-105'}
+                    ${idx !== 0 ? 'grayscale-60 group-hover:grayscale-0 group-hover:scale-110' : 'group-hover:scale-105'}
                   `}
                                 />
                             </div>
@@ -269,7 +269,7 @@ export default function ProfilePage() {
                         <span className="p-2 bg-zinc-900 rounded-xl border border-zinc-800/60"><PlayCircle size={20} className="text-primary" /></span>
                         Featured Story
                     </h2>
-                    <div className="aspect-video w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-zinc-800/50 bg-[#050505] group">
+                    <div className="aspect-video w-full rounded-2xl sm:rounded-4xl overflow-hidden border border-zinc-800/50 bg-[#050505] group">
                         <iframe
                             width="100%"
                             height="100%"

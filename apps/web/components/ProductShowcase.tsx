@@ -25,9 +25,9 @@ export const ProductShowcase = () => {
       {/* Product 1: SynConnect Card */}
       <section
         id="card"
-        className="py-20 lg:py-32 border-t border-white/5 pb-0"
+        className="lg:py-12 border-t border-white/5 pb-0"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image First on Mobile */}
             <motion.div
@@ -75,7 +75,7 @@ export const ProductShowcase = () => {
               </motion.h2>
               <motion.p
                 variants={itemVariants}
-                className="text-lg lg:text-xl text-white/60 mb-8 leading-relaxed"
+                className="text-lg w-full lg:text-xl text-white/60 mb-8 leading-relaxed"
               >
                 A smart NFC-enabled digital business card that instantly shares
                 your profile, services, and contact details with a simple tap.
@@ -105,14 +105,14 @@ export const ProductShowcase = () => {
 
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col sm:flex-row items-center gap-4"
+                className="flex w-full flex-col sm:flex-row items-center gap-4"
               >
                 <Link
-                  href="/shop/card"
-                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-lg font-black text-black transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(190,238,2,0.2)]"
+                  href="/shop/card-synconnect"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-lg font-black text-black transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(190,238,2,0.2)]"
                 >
                   <CreditCard className="w-5 h-5" />
-                  Get My Card — ₹2,999
+                  Get My Card 
                 </Link>
               </motion.div>
             </motion.div>
@@ -148,33 +148,7 @@ export const ProductShowcase = () => {
                   </div>
                 </div>
 
-                {/* Floating Achievement Badge */}
-                <motion.div
-                  initial={{ rotate: -10, scale: 0 }}
-                  whileInView={{ rotate: 5, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 20,
-                    delay: 0.5,
-                  }}
-                  className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 bg-black border border-primary/30 p-4 rounded-2xl shadow-xl z-10"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="flex">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <Star
-                          key={s}
-                          className="w-3 h-3 lg:w-4 lg:h-4 text-primary fill-primary"
-                        />
-                      ))}
-                    </div>
-                    <span className="text-white font-black text-xs lg:text-sm">
-                      +42 Reviews
-                    </span>
-                  </div>
-                </motion.div>
+              
               </div>
             </motion.div>
 
@@ -231,11 +205,11 @@ export const ProductShowcase = () => {
 
               <motion.div variants={itemVariants}>
                 <Link
-                  href="/shop/stand"
+                  href="/shop/stand-google"
                   className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-black text-black transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
                   <Star className="w-5 h-5 text-primary fill-primary" />
-                  Get Review Stand — ₹3,999
+                  Get Review Stand
                 </Link>
               </motion.div>
             </motion.div>

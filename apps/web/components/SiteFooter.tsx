@@ -6,19 +6,46 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export const SocialProof = () => {
+  const testimonials = [
+    {
+      quote: 'Clients are genuinely impressed when I tap my card. It feels modern and premium. No more carrying paper.',
+      author: 'Elena Rodriguez',
+      role: 'Freelance Designer',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150'
+    },
+    {
+      quote: 'We increased our Google reviews by over 300% within weeks. The stand is worth every single rupee.',
+      author: 'Mark Stevenson',
+      role: 'Salon Owner',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150'
+    },
+    {
+      quote: "I haven't printed a single business card since I got SynConnect. It's the best networking investment I've made.",
+      author: 'Ayush Patel',
+      role: 'Real Estate Broker',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150'
+    },
+    {
+      quote: "Our restaurant's ratings skyrocketed. Customers love the seamless tap-to-review process right at their tables.",
+      author: 'Sarah Jenkins',
+      role: 'Restaurant Manager',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150'
+    }
+  ];
+
   return (
     <section className="py-20 lg:py-32 bg-primary/5">
       <div className="mx-auto max-w-site px-6 lg:px-8">
         <div className="text-center mb-16 lg:mb-20">
           <motion.h2
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl lg:text-5xl font-black text-white mb-6 italic"
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 italic tracking-tight"
           >
             Loved by Professionals & Businesses
           </motion.h2>
-          <div className="flex justify-center gap-1 mb-4">
+          <div className="flex justify-center gap-1 mb-4 mt-2">
             {[1, 2, 3, 4, 5].map((s) => (
               <Star
                 key={s}
@@ -26,45 +53,37 @@ export const SocialProof = () => {
               />
             ))}
           </div>
-          <p className="text-white/40 text-[10px] lg:text-sm font-black uppercase tracking-widest">
+          <p className="text-white/50 text-[10px] lg:text-sm font-black uppercase tracking-[0.2em]">
             4.9/5 Average Rating — Based on 2,500+ Taps
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-12">
-          {[
-            {
-              quote:
-                'Clients are genuinely impressed when I tap my card. It feels modern and premium. No more carrying paper.',
-              author: 'Elena Rodriguez',
-              role: 'Freelance Designer',
-            },
-            {
-              quote:
-                'We increased our Google reviews by over 300% within weeks. The stand is worth every rupee.',
-              author: 'Mark Stevenson',
-              role: 'Salon Owner',
-            },
-          ].map((t, i) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {testimonials.map((t, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="rounded-3xl bg-white/[0.02] border border-white/5 p-8 lg:p-12 italic text-lg lg:text-2xl text-white/80 relative overflow-hidden"
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+              className="flex flex-col justify-between rounded-3xl bg-white/2 border border-white/5 p-8 hover:bg-white/4 hover:border-white/10 transition-all duration-500 relative overflow-hidden group"
             >
-              <span className="text-primary text-[120px] absolute -top-4 -left-4 opacity-5 pointer-events-none italic">
+              <span className="text-primary text-[100px] leading-none absolute -top-2 -left-2 opacity-5 pointer-events-none italic group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
                 “
               </span>
-              <p className="relative z-10 mb-8 leading-relaxed">"{t.quote}"</p>
-              <div className="flex items-center gap-4">
-                <div className="h-10 w-10 lg:h-14 lg:w-14 rounded-full bg-white/10" />
+              <p className="relative z-10 mb-10 text-base lg:text-lg text-white/80 leading-relaxed font-medium italic">"{t.quote}"</p>
+              
+              <div className="flex items-center gap-4 border-t border-white/5 pt-6 mt-auto">
+                <img 
+                  src={t.image} 
+                  alt={t.author} 
+                  className="h-12 w-12 rounded-full object-cover border border-white/10 group-hover:border-primary/50 transition-colors duration-500" 
+                />
                 <div>
-                  <p className="text-white font-black text-sm lg:text-lg not-italic italic uppercase tracking-wider">
+                  <p className="text-white font-black text-sm uppercase tracking-widest mb-1">
                     {t.author}
                   </p>
-                  <p className="text-white/40 text-[10px] lg:text-xs not-italic font-medium uppercase tracking-[0.2em]">
+                  <p className="text-white/40 text-[9px] font-bold uppercase tracking-[0.2em]">
                     {t.role}
                   </p>
                 </div>

@@ -7,119 +7,12 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useShopStore } from '@/store/useShopStore';
 
-const PRODUCTS = [
-  // =========================
-  // DIGITAL BUSINESS CARDS
-  // =========================
-  {
-    id: 'card-metal',
-    name: 'Metal NFC Business Card',
-    category: 'Card',
-    description: 'Ultra-premium stainless steel NFC card for executives and founders.',
-    price: '₹5,999',
-    image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.9,
-    reviews: 42,
-    features: ['Stainless Steel', 'Laser Engraving', 'Unlimited Taps', 'Premium Finish'],
-  },
-  {
-    id: 'card-wooden',
-    name: 'Wooden NFC Business Card',
-    category: 'Card',
-    description: 'Elegant wooden NFC card for a natural and classy impression.',
-    price: '₹3,499',
-    image: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.8,
-    reviews: 36,
-    features: ['Natural Wood Finish', 'Custom Engraving', 'Eco-Friendly', 'NFC Enabled'],
-  },
-  {
-    id: 'card-pvc',
-    name: 'PVC NFC Business Card',
-    category: 'Card',
-    description: 'Durable and affordable NFC card for everyday networking.',
-    price: '₹1,999',
-    image: 'https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.7,
-    reviews: 68,
-    features: ['Lightweight', 'Full Color Print', 'Water Resistant', 'Unlimited Taps'],
-  },
-  {
-    id: 'card-synconnect',
-    name: 'SynConnect Branding Card',
-    category: 'Card',
-    description: 'Budget-friendly NFC card with SynConnect branding.',
-    price: '₹999',
-    image: 'https://images.unsplash.com/photo-1593032465171-8c5f1f1b0c15?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.6,
-    reviews: 104,
-    features: ['Affordable', 'NFC Enabled', 'Quick Setup', 'Best for Teams'],
-  },
-
-  // =========================
-  // REVIEW STANDS
-  // =========================
-  {
-    id: 'stand-wooden',
-    name: 'Wooden NFC Review Stand',
-    category: 'Stand',
-    description: 'Premium wooden counter stand to collect Google reviews easily.',
-    price: '₹2,000',
-    image: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.8,
-    reviews: 55,
-    features: ['Premium Wood Build', 'QR + NFC', 'Custom Logo', 'Counter Display'],
-  },
-  {
-    id: 'stand-all-in-one',
-    name: 'All-in-One Custom Review Stand',
-    category: 'Stand',
-    description: 'Fully customized stand designed to increase Google reviews.',
-    price: '₹1,799',
-    image: 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.9,
-    reviews: 73,
-    features: ['Custom Branding', 'QR Optimized', 'NFC Enabled', 'Counter Display'],
-  },
-  {
-    id: 'stand-google',
-    name: 'Google Review Stand',
-    category: 'Stand',
-    description: 'Modern acrylic Google review stand for reception and billing desks.',
-    price: '₹1,499',
-    image: 'https://images.unsplash.com/photo-1556740734-754f1ef9228d?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.7,
-    reviews: 64,
-    features: ['Premium Acrylic', 'Google Review Direct Link', 'QR + NFC', 'Compact Design'],
-  },
-  {
-    id: 'stand-bundle-card',
-    name: 'Direct Review Bundle Card',
-    category: 'Stand',
-    description: 'Portable review card bundle for easy review collection.',
-    price: '₹700',
-    image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.6,
-    reviews: 88,
-    features: ['Pocket Size', 'NFC + QR', 'Affordable', 'Easy Setup'],
-  },
-  {
-    id: 'stand-sticker',
-    name: 'Direct Review Stickers (NFC + QR)',
-    category: 'Stand',
-    description: 'Stick it anywhere and start collecting reviews instantly.',
-    price: '₹699',
-    image: 'https://images.unsplash.com/photo-1587614295999-6c1c3f1a9f96?q=80&w=1000&auto=format&fit=crop',
-    rating: 4.5,
-    reviews: 97,
-    features: ['Peel & Stick', 'NFC + QR', 'Waterproof', 'Budget Friendly'],
-  },
-];
+import { products as SHARED_PRODUCTS } from '@synconnect/schema';
 
 export default function ShopPage() {
   const { selectedCategory, setSelectedCategory, searchQuery, setSearchQuery } = useShopStore();
 
-  const filteredProducts = PRODUCTS.filter((product) => {
+  const filteredProducts = SHARED_PRODUCTS.filter((product) => {
     const matchesCategory =
       selectedCategory === 'All Products' ||
       (selectedCategory === 'Cards' && product.category === 'Card') ||
@@ -214,7 +107,7 @@ console.log(selectedCategory);
                   {/* Image Part (Top) */}
                   <div className="relative w-full aspect-square sm:aspect-4/3 overflow-hidden bg-black/50">
                     <img
-                      src={product.image}
+                      src={product.images[0]}
                       alt={product.name}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     />
@@ -247,7 +140,7 @@ console.log(selectedCategory);
                     <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-2.5 sm:pt-4">
                       <div className="flex flex-col">
                         <span className="text-[8px] sm:text-[10px] font-medium text-zinc-500 uppercase tracking-widest hidden sm:block">Base Price</span>
-                        <span className="text-sm sm:text-lg font-bold text-white tracking-tight">{product.price}</span>
+                        <span className="text-sm sm:text-lg font-bold text-white tracking-tight">₹{product.price.toLocaleString()}</span>
                       </div>
                       <Link
                         href={`/shop/${product.id}`}
