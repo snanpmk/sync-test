@@ -11,30 +11,34 @@ export const SocialProof = () => {
       quote: 'Clients are genuinely impressed when I tap my card. It feels modern and premium. No more carrying paper.',
       author: 'Elena Rodriguez',
       role: 'Freelance Designer',
+      metric: '+150 profile views/week',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150'
     },
     {
       quote: 'We increased our Google reviews by over 300% within weeks. The stand is worth every single rupee.',
       author: 'Mark Stevenson',
       role: 'Salon Owner',
+      metric: '300% more Google reviews',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150'
     },
     {
       quote: "I haven't printed a single business card since I got SynConnect. It's the best networking investment I've made.",
       author: 'Ayush Patel',
       role: 'Real Estate Broker',
+      metric: '0 paper cards since day one',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150'
     },
     {
       quote: "Our restaurant's ratings skyrocketed. Customers love the seamless tap-to-review process right at their tables.",
       author: 'Sarah Jenkins',
       role: 'Restaurant Manager',
+      metric: '4.8★ → 4.9★ in 30 days',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150'
     }
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-primary/5">
+    <section aria-label="Customer testimonials" className="py-20 lg:py-32 bg-primary/5">
       <div className="mx-auto max-w-site px-6 lg:px-8">
         <div className="text-center mb-16 lg:mb-20">
           <motion.h2
@@ -43,7 +47,7 @@ export const SocialProof = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 italic tracking-tight"
           >
-            Loved by Professionals & Businesses
+            Trusted by 2,500+ Professionals & Businesses
           </motion.h2>
           <div className="flex justify-center gap-1 mb-4 mt-2">
             {[1, 2, 3, 4, 5].map((s) => (
@@ -71,12 +75,25 @@ export const SocialProof = () => {
               <span className="text-primary text-[100px] leading-none absolute -top-2 -left-2 opacity-5 pointer-events-none italic group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
                 “
               </span>
-              <p className="relative z-10 mb-10 text-base lg:text-lg text-white/80 leading-relaxed font-medium italic">"{t.quote}"</p>
+
+              {/* Per-card star rating */}
+              <div className="flex gap-0.5 mb-4 relative z-10">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className="w-3.5 h-3.5 text-primary fill-primary" />
+                ))}
+              </div>
+
+              <p className="relative z-10 mb-6 text-base lg:text-lg text-white/80 leading-relaxed font-medium italic">"{t.quote}"</p>
+
+              {/* Metric badge */}
+              <div className="relative z-10 mb-6 inline-flex self-start items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1.5">
+                <span className="text-primary text-[10px] font-black uppercase tracking-widest">{t.metric}</span>
+              </div>
               
               <div className="flex items-center gap-4 border-t border-white/5 pt-6 mt-auto">
                 <img 
                   src={t.image} 
-                  alt={t.author} 
+                  alt={`Photo of ${t.author}, ${t.role}`}
                   className="h-12 w-12 rounded-full object-cover border border-white/10 group-hover:border-primary/50 transition-colors duration-500" 
                 />
                 <div>

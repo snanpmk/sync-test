@@ -29,7 +29,7 @@ export const Hero = () => {
             >
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-xs font-semibold text-zinc-300 uppercase tracking-widest pl-1">
-                SMART DIGITAL NETWORKING PLATFORM
+                NFC-POWERED DIGITAL BUSINESS CARDS
               </span>
             </motion.div>
 
@@ -39,21 +39,23 @@ export const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8 leading-[1.05]"
             >
-              Connect Smarter, <br className="hidden sm:block" />
+              Smarter Introductions,<br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-primary to-zinc-400">
-                Grow Faster in the Digital Era.</span>
+                Stronger Connections.
+              </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg sm:text-xl text-zinc-400 mb-12 leading-relaxed font-medium max-w-xl"
+              className="flex flex-col gap-4 mb-12 max-w-xl"
             >
-
-              Smart digital business cards with real-time analytics.
-
-              Google Review stands that turn happy customers into 5-star ratings. </motion.p>
+              {/* Sub-copy */}
+              <p className="text-lg sm:text-xl text-zinc-400 leading-relaxed font-medium">
+                Transform your networking with smart NFC cards that share your professional profile instantly.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -63,19 +65,52 @@ export const Hero = () => {
             >
               <Link
                 href="/shop"
+                aria-label="Get your digital card — visit the shop"
                 className="group flex w-full sm:w-auto items-center justify-center gap-3 rounded-2xl bg-white px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-bold text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
               >
                 <CreditCard className="w-5 h-5 text-zinc-800" />
-                Explore Products
+                Get Your Digital Card
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-zinc-600" />
               </Link>
               <Link
                 href="/features"
+                aria-label="Explore all features of SynConnect"
                 className="group flex w-full sm:w-auto items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white active:scale-95 backdrop-blur-sm"
               >
                 <Play className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                See It in Action
+                Explore All Features
               </Link>
+            </motion.div>
+
+            {/* Social proof mini-bar */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="flex items-center gap-3 mt-10"
+            >
+              <div className="flex -space-x-2">
+                {[
+                  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=40&h=40',
+                  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=40&h=40',
+                  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=40&h=40',
+                ].map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt="SynConnect customer"
+                    className="w-8 h-8 rounded-full border-2 border-[#09090B] object-cover"
+                  />
+                ))}
+              </div>
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className="w-3.5 h-3.5 text-primary fill-primary" />
+                ))}
+              </div>
+              <p className="text-zinc-400 text-sm font-medium">
+                <span className="text-white font-bold">300+</span> professionals trust SynConnect
+              </p>
             </motion.div>
           </div>
 
@@ -96,7 +131,7 @@ export const Hero = () => {
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
-                alt="Dashboard App Preview"
+                alt="SynConnect analytics dashboard showing profile views, social clicks, and conversion metrics"
                 className="relative z-10 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
               />
 
