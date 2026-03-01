@@ -47,7 +47,7 @@ export const SocialProof = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 italic tracking-tight"
           >
-            Trusted by 2,500+ Professionals & Businesses
+            Trusted by Professionals & Businesses
           </motion.h2>
           <div className="flex justify-center gap-1 mb-4 mt-2">
             {[1, 2, 3, 4, 5].map((s) => (
@@ -58,7 +58,7 @@ export const SocialProof = () => {
             ))}
           </div>
           <p className="text-white/50 text-[10px] lg:text-sm font-black uppercase tracking-[0.2em]">
-            4.9/5 Average Rating — Based on 2,500+ Taps
+            4.9/5 Average Rating — Based on 300+ Taps
           </p>
         </div>
 

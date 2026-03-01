@@ -14,7 +14,7 @@ export function TrendingCard() {
                     Your profile is trending!
                 </h3>
                 <p className="text-neutral-900/70 text-sm font-semibold max-w-[200px] mx-auto leading-relaxed">
-                    You've reached <span className="font-bold underline">2,500 new people</span> this week. Keep sharing!
+                    You've reached <span className="font-bold underline">300 new people</span> this week. Keep sharing!
                 </p>
             </div>
 
