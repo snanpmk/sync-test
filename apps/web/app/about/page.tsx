@@ -77,7 +77,7 @@ export default function About() {
                       Community
                     </h4>
                     <p className="text-sm font-bold opacity-60 leading-relaxed">
-                      Built for over 50,000+ professionals worldwide.
+                      Built for professionals and businesses who want real connections.
                     </p>
                   </motion.div>
                 </div>
@@ -138,7 +138,7 @@ export default function About() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="mx-auto h-20 w-20 lg:h-24 lg:w-24 flex items-center justify-center rounded-3xl bg-white/5 border border-white/10 text-primary group-hover:bg-primary group-hover:text-black transition-all mb-8 shadow-xl"
+                    className="mx-auto h-20 w-20 lg:h-24 lg:w-24 flex items-center justify-center rounded-3xl bg-white/5 border border-white/10 text-white/80 group-hover:bg-primary group-hover:text-black transition-all mb-8 shadow-xl"
                   >
                     <v.icon className="w-8 h-8 lg:w-10 lg:h-10" />
                   </motion.div>

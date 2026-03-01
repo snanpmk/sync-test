@@ -19,7 +19,7 @@ export const orderSchema = z.object({
     'delivered',
     'cancelled',
   ]),
-  purchasePath: z.enum(['cart', 'quick_buy', 'customize_first']),
+  purchasePath: z.enum(['direct', 'quick_buy', 'customize_first']),
   activationToken: z.string().optional(),
   isActivated: z.boolean().default(false),
   shippingAddress: z.object({

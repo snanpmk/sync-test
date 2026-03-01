@@ -3,6 +3,7 @@
 import { CreditCard, Star, Check } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { CARD_FEATURES, STAND_FEATURES } from '@/lib/constants';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,14 +83,7 @@ export const ProductShowcase = () => {
               </motion.p>
 
               <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8 mb-10">
-                {[
-                  'NFC + QR enabled',
-                  'Instant contact sharing',
-                  'Add social media links',
-                  'Showcase services & portfolio',
-                  'Real-time analytics',
-                  'Edit anytime from dashboard',
-                ].map((feature, i) => (
+                {CARD_FEATURES.map((feature, i) => (
                   <motion.div
                     key={i}
                     variants={itemVariants}
@@ -108,7 +102,7 @@ export const ProductShowcase = () => {
                 className="flex w-full flex-col sm:flex-row items-center gap-4"
               >
                 <Link
-                  href="/shop/card-synconnect"
+                  href="/shop?category=Cards"
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-lg font-black text-black transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(190,238,2,0.2)]"
                 >
                   <CreditCard className="w-5 h-5" />
@@ -182,14 +176,7 @@ export const ProductShowcase = () => {
               </motion.p>
 
               <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8 mb-10">
-                {[
-                  'NFC + QR tap',
-                  'Direct Google review link',
-                  'Custom branding',
-                  'Thank you messaging',
-                  'Tap tracking analytics',
-                  'Built for retail/service',
-                ].map((feature, i) => (
+                {STAND_FEATURES.map((feature, i) => (
                   <motion.div
                     key={i}
                     variants={itemVariants}
@@ -205,8 +192,8 @@ export const ProductShowcase = () => {
 
               <motion.div variants={itemVariants}>
                 <Link
-                  href="/shop/stand-google"
-                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-black text-black transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                  href="/shop?category=Stands"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-black text-black transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
                 >
                   <Star className="w-5 h-5 text-primary fill-primary" />
                   Get Review Stand
@@ -219,3 +206,4 @@ export const ProductShowcase = () => {
     </>
   );
 };
+

@@ -26,7 +26,7 @@ export const Problem = () => {
             </p>
 
             <Link
-              href="/shop"
+              href="/shop?category=Cards"
               className="inline-flex items-center gap-2 text-primary font-bold text-lg hover:underline underline-offset-8 transition-all"
             >
               Upgrade to Smart Networking

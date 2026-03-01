@@ -148,11 +148,11 @@ export default function BusinessProfilePage() {
         <div className="min-h-screen bg-[#050505] text-white pb-20 selection:bg-primary selection:text-black font-sans">
             {/* Main Picture Header */}
             <div className="relative h-64 sm:h-80 md:h-96 w-full bg-[#050505] overflow-hidden">
-                <div className="absolute inset-0 opacity-60">
+                <div className="absolute inset-0 ">
                     <img
                         src={business.mainPic}
                         alt={business.name}
-                        className="w-full h-full object-cover filter blur-[1px] scale-105"
+                        className="w-full h-full object-cover filter  scale-105"
                     />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent z-10 w-full h-full"></div>

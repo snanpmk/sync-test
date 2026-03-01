@@ -172,7 +172,7 @@ export default function ProfilePage() {
                     </div>
                 </motion.div>
 
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800/80 to-transparent my-10 sm:my-14" />
+                <div className="h-px w-full bg-linear-to-r from-transparent via-zinc-800/80 to-transparent my-10 sm:my-14" />
 
                 {/* Expertise / Services */}
                 <div className="space-y-6">
@@ -194,7 +194,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800/80 to-transparent my-10 sm:my-14" />
+                <div className="h-px w-full bg-linear-to-r from-transparent via-zinc-800/80 to-transparent my-10 sm:my-14" />
 
                 {/* Resources / Brochures */}
                 {(profile.resources && profile.resources.length > 0) && (
@@ -261,7 +261,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800/80 to-transparent my-10 sm:my-14" />
+                <div className="h-px w-full bg-linear-to-r from-transparent via-zinc-800/80 to-transparent my-10 sm:my-14" />
 
                 {/* YouTube Embed */}
                 <div className="space-y-6 mb-16">

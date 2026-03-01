@@ -176,10 +176,10 @@ export const Footer = () => {
               Company
             </h5>
             <ul className="space-y-4">
-              {['About Us', 'How it Works', 'Contact'].map((item) => (
+              {['About Us', 'Features', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
-                    href={`/${item.toLowerCase().replace(/ /g, '-')}`}
+                    href={`/${item.replace('About Us', 'about').replace('Features', 'features').replace('Contact', 'contact').toLowerCase()}`}
                     className="text-white/40 hover:text-primary transition-colors font-medium"
                   >
                     {item}

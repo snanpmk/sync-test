@@ -3,29 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
-
-const faqs = [
-  {
-    question: "Do I need an app to use SynConnect?",
-    answer: "No. SynConnect works natively with NFC-enabled smartphones. When someone taps your card or stand, your profile or review link opens directly in their default web browser (Safari, Chrome, etc.)."
-  },
-  {
-    question: "Which phones are compatible?",
-    answer: "Most iPhones (iPhone 7 and newer) and almost all Android devices released in the last 8-10 years have NFC capabilities. For older devices, you can always use the QR code printed on your card or stand."
-  },
-  {
-    question: "Can I change my info after buying?",
-    answer: "Absolutely. You can update your contact details, social links, and documents as many times as you want through your SynConnect dashboard. The changes are instant and reflected on your card immediately."
-  },
-  {
-    question: "Is there a monthly subscription?",
-    answer: "We offer a one-time purchase for the hardware. Basic profile hosting and analytics are included for free. Advanced professional features and team management tools are available through an optional premium subscription."
-  },
-  {
-    question: "How secure is my data?",
-    answer: "We take security seriously. Your data is encrypted and hosted on secure servers. You have complete control over what information you choose to share publicly on your profile."
-  }
-];
+import { FAQS } from '@/lib/constants';
 
 export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -65,7 +43,7 @@ export const FAQ = () => {
           </motion.div>
 
           <div className="space-y-4">
-            {faqs.map((faq, i) => (
+            {FAQS.map((faq, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -112,3 +90,4 @@ export const FAQ = () => {
     </section>
   );
 };
+

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Building2, Users2, Zap, ArrowRight, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import { ENTERPRISE_EMPLOYEES } from '@/lib/constants';
 
 export const BulkSection = () => {
   return (
@@ -31,14 +32,14 @@ export const BulkSection = () => {
             
             <div className="grid sm:grid-cols-2 gap-8 mb-12 text-left">
               <div className="group">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-black transition-all">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 mb-4 group-hover:bg-primary group-hover:text-black transition-all">
                   <Users2 className="w-6 h-6" />
                 </div>
                 <h4 className="text-white font-bold mb-2">Centralized Sync</h4>
                 <p className="text-white/40 text-sm italic">Update 100+ profiles with one click from our central admin panel.</p>
               </div>
               <div className="group">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-black transition-all">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 mb-4 group-hover:bg-primary group-hover:text-black transition-all">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h4 className="text-white font-bold mb-2">Corporate Branding</h4>
@@ -72,12 +73,7 @@ export const BulkSection = () => {
               </div>
 
               <div className="space-y-6">
-                {[
-                  { name: 'John Doe', role: 'CTO', status: 'Active', color: 'text-primary' },
-                  { name: 'Sarah Miller', role: 'Marketing Dir.', status: 'Active', color: 'text-primary' },
-                  { name: 'Michael Chen', role: 'Sales Lead', status: 'Pending', color: 'text-yellow-500' },
-                  { name: 'Emma Wilson', role: 'Designer', status: 'Active', color: 'text-primary' },
-                ].map((emp, i) => (
+                {ENTERPRISE_EMPLOYEES.map((emp, i) => (
                   <motion.div 
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
@@ -111,3 +107,4 @@ export const BulkSection = () => {
     </section>
   );
 };
+

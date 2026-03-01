@@ -3,7 +3,6 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer, Trust } from '@/components/SiteFooter';
 import {
-  ShoppingCart,
   Star,
   CheckCircle2,
   ChevronRight,
@@ -11,8 +10,9 @@ import {
   Zap,
   Shield,
   Globe,
+  Truck,
+  ArrowRight,
 } from 'lucide-react';
-import { useCartStore } from '@/store/useCartStore';
 import { products } from '@synconnect/schema';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -26,18 +26,12 @@ export default function ProductDetailPage({
 }) {
   const { id } = use(params);
   const router = useRouter();
-  const addItem = useCartStore((state) => state.addItem);
-  
+
   // Find product from shared schema products
   const product = products.find((p) => p.id === id) || products[0];
 
-  const handleAddToCart = () => {
-    addItem(product);
-  };
-
   const handleBuyNow = () => {
-    addItem(product);
-    router.push('/checkout');
+    router.push(`/checkout?productId=${product.id}`);
   };
 
   return (
@@ -200,15 +194,9 @@ export default function ProductDetailPage({
 
               {/* CTA Area (Sticky) */}
               <div className="fixed sm:sticky bottom-0 sm:bottom-6 left-0 right-0 z-50 flex flex-row gap-3 sm:gap-4 p-4 sm:p-5 bg-black/90 sm:bg-[#09090B]/80 backdrop-blur-xl border-t sm:border border-white/10 sm:rounded-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.5)] mt-8 w-full lg:max-w-3xl mx-auto">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleAddToCart}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white/5 sm:bg-white/5 px-4 py-3.5 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-white hover:bg-white/10 transition-all border border-white/5"
-                >
-                  <ShoppingCart className="w-5 h-5 sm:w-5 sm:h-5 text-zinc-300" />
-                  <span className="hidden sm:inline">Add to Cart</span>
-                </motion.button>
+                {/* Shipping trust pill — replaces the old Add to Cart slot */}
+             
+
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -216,9 +204,11 @@ export default function ProductDetailPage({
                 >
                   <button
                     onClick={handleBuyNow}
-                    className="flex items-center justify-center rounded-xl sm:rounded-2xl flex-col bg-primary px-4 py-2 text-base sm:text-lg font-bold text-black hover:brightness-110 transition-all w-full h-full shadow-[0_4px_20px_rgba(190,238,2,0.15)] leading-tight"
+                    className="flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl flex-col bg-primary px-6 py-3 text-base sm:text-lg font-bold text-black hover:brightness-110 transition-all w-full h-full shadow-[0_4px_20px_rgba(190,238,2,0.15)] leading-tight"
                   >
-                    <span>Buy Now</span>
+                    <span className="flex items-center gap-2">
+                      Buy Now <ArrowRight className="w-4 h-4" />
+                    </span>
                   </button>
                 </motion.div>
               </div>

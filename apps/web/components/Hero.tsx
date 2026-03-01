@@ -70,7 +70,7 @@ export const Hero = () => {
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-zinc-600" />
               </Link>
               <Link
-                href="/how-it-works"
+                href="/features"
                 className="group flex w-full sm:w-auto items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white active:scale-95 backdrop-blur-sm"
               >
                 <Play className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />

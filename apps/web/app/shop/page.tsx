@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 import { Footer, Trust } from '@/components/SiteFooter';
 import { Star, ArrowRight, Search } from 'lucide-react';
@@ -9,8 +11,16 @@ import { useShopStore } from '@/store/useShopStore';
 
 import { products as SHARED_PRODUCTS } from '@synconnect/schema';
 
-export default function ShopPage() {
-  const { selectedCategory, setSelectedCategory, searchQuery, setSearchQuery } = useShopStore();
+function ShopContent() {
+  const searchParams = useSearchParams();
+  const { searchQuery, setSearchQuery } = useShopStore();
+  const [selectedCategory, setSelectedCategory] = useState('All Products');
+
+  // Apply filter from URL param (e.g. when navigating from features page)
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat) setSelectedCategory(cat);
+  }, [searchParams, setSelectedCategory]);
 
   const filteredProducts = SHARED_PRODUCTS.filter((product) => {
     const matchesCategory =
@@ -20,9 +30,6 @@ export default function ShopPage() {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-console.log(selectedCategory);
-
-  console.log(filteredProducts);
   
 
   return (
@@ -144,7 +151,7 @@ console.log(selectedCategory);
                       </div>
                       <Link
                         href={`/shop/${product.id}`}
-                        className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-black transition-all group-hover:rotate-0 -rotate-45"
+                        className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-primary/10 text-white/80 hover:bg-primary hover:text-black transition-all group-hover:rotate-0 -rotate-45"
                       >
                         <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform" />
                       </Link>
@@ -165,14 +172,14 @@ console.log(selectedCategory);
   );
 }
 
-const CheckIcon = () => (
-  <svg
-    className="w-4 h-4 text-primary"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={3}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-  </svg>
-);
+export default function ShopPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center font-black italic text-4xl">
+        SYN<span className="text-primary">CONNECT</span>
+      </div>
+    }>
+      <ShopContent />
+    </Suspense>
+  );
+}

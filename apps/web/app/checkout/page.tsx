@@ -1,30 +1,28 @@
 'use client';
 
-import { useCartStore } from '@/store/useCartStore';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod'
 import { createOrderSchema } from '@synconnect/schema';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { products } from '@synconnect/schema';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/SiteFooter';
 import { Lock, ArrowRight, ShieldCheck, CreditCard, Truck, CheckCircle2 } from 'lucide-react';
-import Link from 'next/link';
 
-export default function CheckoutPage() {
-  const { items, getTotalPrice, clearCart } = useCartStore();
+function CheckoutForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const productId = searchParams.get('productId');
 
-  const [mounted, setMounted] = useState(false);
+  // Find the product from the URL param, fallback to first product
+  const product = products.find((p) => p.id === productId) || products[0];
+
   const [otpSent, setOtpSent] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [otpCode, setOtpCode] = useState(['', '', '', '']);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const {
     register,
@@ -35,15 +33,17 @@ export default function CheckoutPage() {
     resolver: zodResolver(createOrderSchema),
     defaultValues: {
       userId: 'mock-user-id',
-      items: items.map(item => ({
-        productId: item.id,
-        productName: item.name,
-        quantity: item.quantity,
-        price: item.price
-      })),
-      totalAmount: getTotalPrice(),
+      items: [
+        {
+          productId: product.id,
+          productName: product.name,
+          quantity: 1,
+          price: product.price,
+        },
+      ],
+      totalAmount: product.price,
       status: 'pending' as const,
-      purchasePath: 'cart' as const,
+      purchasePath: 'direct' as const,
       shippingAddress: {
         name: '',
         email: '',
@@ -52,20 +52,15 @@ export default function CheckoutPage() {
         city: '',
         state: '',
         pinCode: '',
-      }
-    }
+      },
+    },
   });
 
   const emailValue = watch('shippingAddress.email');
 
-  if (!mounted) return null;
-
-  const total = getTotalPrice();
-
   const handleSendOtp = () => {
     if (!emailValue || errors.shippingAddress?.email) return;
     setIsVerifying(true);
-    // Mock OTP Send
     setTimeout(() => {
       setOtpSent(true);
       setIsVerifying(false);
@@ -78,14 +73,12 @@ export default function CheckoutPage() {
     newOtp[index] = value;
     setOtpCode(newOtp);
 
-    // Auto verify if complete
     if (newOtp.join('').length === 4) {
-      if (newOtp.join('') === '1234') { // Mock verification
+      if (newOtp.join('') === '1234') {
         setIsVerified(true);
       }
     }
 
-    // Auto focus next
     if (value && index < 3) {
       const nextInput = document.getElementById(`otp-${index + 1}`);
       nextInput?.focus();
@@ -96,7 +89,6 @@ export default function CheckoutPage() {
     if (!isVerified) return;
     console.log('Order submitted:', data);
     setTimeout(() => {
-      clearCart();
       router.push('/order-success');
     }, 1000);
   };
@@ -262,45 +254,41 @@ export default function CheckoutPage() {
                   Order Summary
                 </h3>
 
-                <div className="max-h-60 overflow-y-auto space-y-6 pr-2 custom-scrollbar">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex gap-4 sm:gap-6">
-                      <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden border border-white/10 bg-black shrink-0">
-                        <img
-                          src={item.images[0]}
-                          alt={item.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-black italic text-base">{item.name}</p>
-                        <p className="text-primary font-bold text-sm">
-                          ₹{item.price.toLocaleString()}
-                        </p>
-                        <p className="text-[10px] text-white/40 font-medium mt-1 italic">
-                          Qty: {item.quantity}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                {/* Single product summary */}
+                <div className="flex gap-4 sm:gap-6">
+                  <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-2xl overflow-hidden border border-white/10 bg-black shrink-0">
+                    <img
+                      src={product.images[0]}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <p className="font-black italic text-base">{product.name}</p>
+                    <p className="text-primary font-bold text-sm mt-1">
+                      ₹{product.price.toLocaleString()}
+                    </p>
+                    <p className="text-[10px] text-white/40 font-medium mt-1 italic">Qty: 1</p>
+                  </div>
                 </div>
 
                 <div className="space-y-4 pt-6 border-t border-white/10">
                   <div className="flex justify-between items-center text-sm font-medium">
                     <span className="text-white/40">Subtotal</span>
-                    <span>₹{total.toLocaleString()}</span>
+                    <span>₹{product.price.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center text-sm font-medium">
                     <span className="text-white/40">Shipping</span>
                     <span className="text-primary">FREE</span>
                   </div>
-                  <div className="flex justify-between items-center text-xl font-black italic pt-4">
+                  <div className="flex justify-between items-center text-xl font-black italic pt-4 border-t border-white/10">
                     <span>Total</span>
-                    <span>₹{total.toLocaleString()}</span>
+                    <span>₹{product.price.toLocaleString()}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-center gap-3 pt-4">
+                  <CreditCard className="w-4 h-4 text-primary" />
                   <ShieldCheck className="w-4 h-4 text-primary" />
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
                     Satisfaction Guaranteed
@@ -314,5 +302,13 @@ export default function CheckoutPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense>
+      <CheckoutForm />
+    </Suspense>
   );
 }
