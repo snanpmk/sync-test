@@ -118,23 +118,18 @@ export default function ProfilePage() {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="max-w-xl mx-auto px-6 -mt-16 sm:-mt-24 flex flex-col items-center relative z-20"
+                className="max-w-xl mx-auto px-6 -mt-12 sm:-mt-20 flex flex-col items-center relative z-20"
             >
                 
-                {/* CLEANER PROFILE PIC UI */}
-                <motion.div variants={itemVariants} className="relative mb-10 group">
-                    {/* Ambient Halo Glow */}
-                    <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                    
-                    <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full p-1 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl relative z-10 transition-transform hover:scale-[1.02] duration-700">
-                        <div className="w-full h-full rounded-full overflow-hidden bg-zinc-900 border-2 border-white/5">
-                            <img src={profile.profilePic} alt={profile.name} className="w-full h-full object-cover" />
-                        </div>
+                {/* COMPACT PROFILE PIC */}
+                <motion.div variants={itemVariants} className="relative mb-6 group">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl bg-zinc-900 transition-transform hover:scale-105 duration-500">
+                        <img src={profile.profilePic} alt={profile.name} className="w-full h-full object-cover" />
                     </div>
                 </motion.div>
 
                 {/* CENTRIC INFO */}
-                <motion.div variants={itemVariants} className="text-center mb-12">
+                <motion.div variants={itemVariants} className="text-center mb-8">
                     <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-3 leading-tight">
                         {profile.name}
                     </h1>
@@ -184,7 +179,7 @@ export default function ProfilePage() {
                     {/* ROW 2: GLASS ACTIONS - ASYMMETRIC UI */}
                     <div className="flex gap-3.5 h-16">
                         <button className="flex-1 rounded-3xl bg-white/4 border border-white/10 text-white font-bold text-sm flex items-center justify-center gap-3 hover:bg-white/10 transition-all active:scale-[0.98] backdrop-blur-xl">
-                            <Download size={18} className="translate-y-[-1px]" />
+                            <Download size={18} className="-translate-y-px" />
                             Save to Contacts
                         </button>
                         <button className="w-16 h-16 shrink-0 rounded-3xl bg-white/4 border border-white/10 text-white flex items-center justify-center hover:bg-white/10 transition-all active:scale-[0.98] backdrop-blur-xl" aria-label="Share Profile">
@@ -213,7 +208,7 @@ export default function ProfilePage() {
                         {/* Phone Row */}
                         <a href={`tel:${profile.contact.phone}`} className="flex items-center justify-between p-6 hover:bg-white/3 transition-all group">
                             <div className="flex items-center gap-5">
-                                <div className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center text-zinc-400 group-hover:text-white transition-all">
+                                <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                                     <Phone size={20} />
                                 </div>
                                 <div>
@@ -221,13 +216,13 @@ export default function ProfilePage() {
                                     <p className="text-white font-bold text-base tracking-tight">{profile.contact.phone}</p>
                                 </div>
                             </div>
-                            <ArrowUpRight size={18} className="text-zinc-700 group-hover:text-white transition-all" />
+                            <ArrowUpRight size={18} className="text-zinc-700 group-hover:text-white transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </a>
 
                         {/* Website Row */}
                         <a href={`https://${profile.contact.website}`} target="_blank" rel="noreferrer" className="flex items-center justify-between p-6 hover:bg-white/3 transition-all group">
                             <div className="flex items-center gap-5">
-                                <div className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center text-zinc-400 group-hover:text-white transition-all">
+                                <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                                     <ExternalLink size={20} />
                                 </div>
                                 <div>
@@ -235,18 +230,21 @@ export default function ProfilePage() {
                                     <p className="text-white font-bold text-base tracking-tight">{profile.contact.website}</p>
                                 </div>
                             </div>
-                            <ArrowUpRight size={18} className="text-zinc-700 group-hover:text-white transition-all" />
+                            <ArrowUpRight size={18} className="text-zinc-700 group-hover:text-white transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </a>
 
                         {/* Location Row */}
-                        <div className="flex items-center gap-5 p-6 bg-white/1">
-                            <div className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center text-zinc-700">
-                                <MapPin size={20} />
+                        <div className="flex items-center justify-between p-6 hover:bg-white/3 transition-all group">
+                            <div className="flex items-center gap-5">
+                                <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                    <MapPin size={20} />
+                                </div>
+                                <div>
+                                    <p className="text-[9px] font-black text-zinc-600 uppercase tracking-[2.5px] mb-1">Location</p>
+                                    <p className="text-white font-bold text-base tracking-tight">{profile.contact.location}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-[2.5px] mb-1">Location</p>
-                                <p className="text-zinc-400 font-bold text-base tracking-tight">{profile.contact.location}</p>
-                            </div>
+                            <MapPin size={18} className="text-zinc-700 opacity-20" />
                         </div>
                     </div>
                 </motion.div>
@@ -296,11 +294,11 @@ export default function ProfilePage() {
                                 Full Portfolio <ArrowUpRight size={14} />
                             </button>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
                             {profile.products.map((img, idx) => (
                                 <div key={idx} className="rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative group aspect-video">
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                                    <img src={img} alt="Work" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100" />
+                                    <img src={img} alt="Work" className="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100" />
                                 </div>
                             ))}
                         </div>
